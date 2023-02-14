@@ -12,7 +12,7 @@ export default function SalesContainer() {
     <LayoutApp>
       <div className="sales">
         <CustomFilterHeader title="Sales " />
-        <CustomFilterHeader title="Sales Analytic" noFilter />
+        {/* <CustomFilterHeader title="Sales Analytic" noFilter /> */}
         <SalesAnalytic />
         <CustomFilterHeader title="Cancelled Order Analytic" noFilter />
         <CanceledAnalytic />
