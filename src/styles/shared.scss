@@ -230,3 +230,32 @@
     }
 }
 
+.custom-funnelchart{
+    ul{
+        margin: 0;
+        padding: 0;
+        li{
+            list-style: none;
+        }
+        .barbox{
+            font-size: 21px;
+            font-weight: bold;
+            border-radius: 10px;
+            height: 54px;
+            &:last-of-type{
+                margin-bottom: 0 !important;
+            }
+
+        }
+        .valbox{
+            font-size: 20px;
+            height: 54px;
+            font-weight: bold;
+            border-bottom: 1px solid gray;
+            &:last-of-type{
+                margin-bottom: 0 !important;
+            }
+        }
+    }
+}
+

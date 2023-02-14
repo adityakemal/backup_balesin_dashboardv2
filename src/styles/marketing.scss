@@ -1,3 +1,24 @@
 .marketing{
-    
+    .chat-percentage{
+        height:330px ;
+        .donat{
+            position: relative;
+            .percent{
+                position: absolute;
+                font-size: 26px;
+                font-weight: bold;
+            }
+        }
+        .val{
+            .big{
+                font-size: 32px;
+                font-weight: bold;
+            }
+            .small{
+                font-size: 13px;
+                color: #8B8B8B;
+                font-weight: 300;
+            }
+        }
+    }
 }
