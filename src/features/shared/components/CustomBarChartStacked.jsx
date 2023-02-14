@@ -9,13 +9,9 @@ import {
   Title,
   Tooltip,
   Legend,
+  registerables,
 } from "chart.js";
-import {
-  Chart,
-  getDatasetAtEvent,
-  getElementAtEvent,
-  getElementsAtEvent,
-} from "react-chartjs-2";
+import { Chart } from "react-chartjs-2";
 
 ChartJS.register(
   CategoryScale,
@@ -25,7 +21,8 @@ ChartJS.register(
   LineElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  ...registerables
 );
 
 const borderRadius = 10;
