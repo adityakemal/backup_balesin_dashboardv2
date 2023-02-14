@@ -1,20 +1,27 @@
-import React from 'react'
-import Footer from './Footer'
-import Navbar from './Navbar'
+import AnimateWrapper from "./AnimateWrapper";
 
-export default function LayoutApp({ children, title }) {
-    return (
-        <div className='layout'>
-            <div>
-                <Navbar />
-                <div className='container-fluid h-100'>
-                    <h2>{title}</h2>
-                    {children}
-                </div>
+import SideBar from "./SideBar";
+import Navbar from "./Navbar";
+
+export default function LayoutApp({ children, hideSidebar }) {
+  return (
+    <div className="layoutapp">
+      {/* <Navbar /> */}
+      {hideSidebar ? (
+        <AnimateWrapper>{children}</AnimateWrapper>
+      ) : (
+        <div className="d-flex py-0 px-0">
+          <div className="wrapsidebar">
+            <SideBar />
+          </div>
+          <div className="wrapcon">
+            <Navbar />
+            <div className="px-4">
+              <AnimateWrapper>{children}</AnimateWrapper>
             </div>
-            <Footer />
+          </div>
         </div>
-    )
+      )}
+    </div>
+  );
 }
-
-

@@ -1,0 +1,76 @@
+.sales{
+    .outlet-section{
+        height: 505px;
+        ul{
+         margin: 0;
+         padding: 0;
+         overflow-y: auto;
+         height: 410px;
+         // background-color: red;
+         li{
+             border-bottom: 1px solid #e3e3e3;
+             list-style: none;
+             padding: 17px 0;
+             font-weight: bold;
+             &:last-of-type{
+                 border-bottom: 0;
+             }
+ 
+             &:first-of-type{
+                 padding-top: 0;
+             }
+             .area{
+                 font-size: 20px;
+                 margin-bottom: 0;
+                 color: black;
+             }
+             .total{
+                 color: #454545;
+                 font-size: 18px;
+                 margin-bottom: 0;
+             }
+         }
+        }
+     }
+
+     .funneling{
+        ul{
+            margin: 0;
+            padding: 0;
+            li{
+                list-style: none;
+            }
+            .barbox{
+                font-size: 21px;
+                font-weight: bold;
+                border-radius: 10px;
+                height: 54px;
+
+            }
+            .valbox{
+                font-size: 20px;
+                height: 54px;
+                font-weight: bold;
+                border-bottom: 1px solid gray;
+            }
+        }
+     }
+
+     .delivandpay{
+        .customlegend{
+            ul{
+                margin: 0;
+                padding: 0;
+                li{
+                    list-style-type: none;
+                    .val{
+                        font-size: 10px;
+                        color: #454545;
+                    }
+                }
+            }
+        }
+
+     }
+    
+}

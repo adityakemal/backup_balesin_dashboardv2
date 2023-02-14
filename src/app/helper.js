@@ -8,7 +8,7 @@ export const PublicRoute = ({ children }) => {
     const token = localStorage.getItem('token')
 
 
-    if (auth && token) return <Navigate to="/home" />
+    if (auth && token) return <Navigate to="/dashboard" />
     return children;
 }
 

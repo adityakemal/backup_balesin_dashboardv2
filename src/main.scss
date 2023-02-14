@@ -1,16 +1,59 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700;800&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700;800&display=swap');
+
+//poppin
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,600;1,400&display=swap');
+//antd version 5
+@import '~antd/dist/reset.css';
+//bootstrapt
+@import '~bootstrap/dist/css/bootstrap.min.css';
+//sass utility for breakpoint
+@import '~bootstrap/scss/bootstrap-utilities';
+
 
 * {
-    font-family: 'Nunito', sans-serif;
+    // font-family: 'Nunito', sans-serif;
+    font-family: 'Poppins', sans-serif !important;
 }
 
-$primaryColor: #244093;
-$dangerColor: #E54E26;
+p{
+    font-size: 14px;
+}
+
+
+//colors
+$yellow : #fd0;
+$light-grey : #e5e5e59c;
+$smoke: #E8E8E8;
+$blue : #206AEC;
+$green: #41A944;
+$red: #E5452D;
 
 
 .pointer {
     cursor: pointer;
 }
 
+.legend-chart{
+    margin: 0;
+    padding: 0;
+    .boxcol{
+        width: 15px;
+        height: 15px;
+    }
+}
+
+.gbox{
+    border-radius: 10px;
+    padding: 20px 30px;
+}
+
+.p-30{
+    padding: 30px;
+}
+
+
 @import './styles/auth.scss';
+@import './styles/dashboard.scss';
+@import './styles/sales.scss';
+@import './styles/marketing.scss';
 @import './styles/shared.scss';

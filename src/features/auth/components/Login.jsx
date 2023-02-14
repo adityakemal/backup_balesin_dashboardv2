@@ -126,13 +126,19 @@
 // export default Login;
 
 import React from "react";
-import { Button, Checkbox, Form, Input } from "antd";
+import { useNavigate } from 'react-router-dom';
+import { Button, Form, Input } from "antd";
 
 import * as Yup from "yup";
 
 export default function Login() {
+  const navigate = useNavigate()
+
   const onFinish = (values) => {
     console.log("Success:", values);
+      localStorage.setItem('auth', true)
+         localStorage.setItem('token', 'dummy-token-here')
+         navigate('/dashboard')
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -163,7 +169,7 @@ export default function Login() {
         initialValues={{ remember: true }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
-        autoComplete="off"
+        autoComplete="on"
         layout={"vertical"}
         scrollToFirstError={true}>
         <Form.Item label="Email" name="email" rules={[yupSync]}>
