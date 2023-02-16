@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { Button, Table, Tag, Modal } from "antd";
 import dayjs from "dayjs";
 import { rupiahFormat } from "../../../app/helper";
+import moment from "moment";
 
 export default function TableMarketing({ title, detailComp }) {
   const dataSource = [0, 1, 1, 1, 2, 0, 1, 2, 2, 0].map((res, i) => ({
-    order_id: i + 1,
+    order_id: "081203838383",
     customer_name: "kemal",
     date: new Date(),
     amount: 12232223,
@@ -15,7 +16,7 @@ export default function TableMarketing({ title, detailComp }) {
 
   const columns = [
     {
-      title: "Order Id",
+      title: "phone number",
       dataIndex: "order_id",
       key: "order_id",
     },
@@ -25,34 +26,26 @@ export default function TableMarketing({ title, detailComp }) {
       key: "customer_name",
     },
     {
-      title: "date",
+      title: "registration date",
       dataIndex: "date",
       key: "date",
-      render: (v) => dayjs(v).format("DD MMMM YYYY"),
+      render: (v) => (
+        <div className="text-primary">{dayjs(v).format("DD MMM YYYY")}</div>
+      ),
     },
     {
-      title: "amount",
+      title: "number of order",
       dataIndex: "amount",
       key: "amount",
-      render: (v) => rupiahFormat(v),
+      render: (v) => v,
     },
     {
-      title: "outlet",
-      dataIndex: "outlet",
-      key: "outlet",
-    },
-    {
-      title: "status",
-      dataIndex: "status",
-      key: "status",
-      render: (v) =>
-        v === 0 ? (
-          <b style={{ color: "green" }}>Delivered</b>
-        ) : v === 2 ? (
-          <b style={{ color: "red" }}>Canceled</b>
-        ) : (
-          <b style={{ color: "#f7dc13" }}>Expired</b>
-        ),
+      title: "last order date",
+      dataIndex: "date",
+      key: "date",
+      render: (v) => (
+        <div className="text-success">{dayjs(v).format("DD MMM YYYY")}</div>
+      ),
     },
     {
       title: "option",
@@ -90,7 +83,12 @@ export default function TableMarketing({ title, detailComp }) {
       name: "sarirotiwa",
       text: `Terima kasih Anda telah berhasil melakukan pembayaran untuk order id *sari-SO-20210915-486cbd-4574* Kami akan mengantar pesanan Sari Roti ke tempat Anda sesuai dengan tanggal pengiriman. Untuk mendapatkan informasi promo dan berita terkini dari Sari Roti, Ikuti social media Sari Roti : FB: www.facebook.com/SariRotiRotinyaIndonesia/ IG: https://www.instagram.com/sariroti_rotinyaindonesia/ Ketik ORDER untuk memesan lagi atau MENU untuk kembali ke menu utama.`,
     },
-    { id: "cus", name: "mira", text: `order` },
+    {
+      id: "cus",
+      name: "mira",
+      text: `order`,
+      date: moment().format("DD MMM YYYY"),
+    },
   ];
   return (
     <div className="gbox bg-white">
@@ -216,19 +214,24 @@ export default function TableMarketing({ title, detailComp }) {
                         <div className="me-1">
                           <div className="ava"></div>
                         </div>
-
-                        <div
-                          className="box"
-                          style={{ borderRadius: "0 10px 10px 10px" }}>
-                          {res.text}
+                        <div>
+                          <div
+                            className="box"
+                            style={{ borderRadius: "0 10px 10px 10px" }}>
+                            {res.text}
+                          </div>
+                          <div className="small">{res.name}</div>
                         </div>
                       </div>
                     ) : (
-                      <div className="buble w-100 d-flex justify-content-end mb-3">
-                        <div
-                          className="box bg-light"
-                          style={{ borderRadius: "10px 10px 0px 10px" }}>
-                          {res.text}
+                      <div className="buble w-100 d-flex justify-content-end align-items-end flex-column mb-3">
+                        <div className="">
+                          <div
+                            className="box bg-light"
+                            style={{ borderRadius: "10px 10px 0px 10px" }}>
+                            {res.text}
+                          </div>
+                          <div className="small">{res.date}</div>
                         </div>
                       </div>
                     )
