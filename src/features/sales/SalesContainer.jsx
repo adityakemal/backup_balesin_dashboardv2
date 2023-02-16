@@ -1,7 +1,7 @@
 import React from "react";
 import CustomFilterHeader from "../shared/components/CustomFilterHeader";
 import LayoutApp from "../shared/components/LayoutApp";
-import CustomTable from "../shared/components/CustomTable";
+import TableSales from "./components/TableSales";
 import CanceledAnalytic from "./components/CanceledAnalytic";
 import DelivAndPaymentMethod from "./components/DelivAndPaymentMethod";
 import SalesAnalytic from "./components/SalesAnalytic";
@@ -19,7 +19,7 @@ export default function SalesContainer() {
         <CustomFilterHeader title="Sales Funneling Report" noFilter />
         <SalesFunneling />
         <DelivAndPaymentMethod />
-        <CustomTable title="Transaction Activity" />
+        <TableSales title="Transaction Activity" />
       </div>
     </LayoutApp>
   );

@@ -6,8 +6,9 @@ import CustomFilterHeader from "../shared/components/CustomFilterHeader";
 import SalesBoxes from "./components/SalesBoxes";
 import OutletSales from "./components/OutletSales";
 import CustomerBoxes from "./components/CustomerBoxes";
-import CustomTable from "../shared/components/CustomTable";
+
 import CustomBarChartStacked from "../shared/components/CustomBarChartStacked";
+import TableDashboard from "./components/TableDashboard";
 
 export default function DashboardContainer() {
   const [dataSales, setDataSales] = useState([
@@ -180,7 +181,7 @@ export default function DashboardContainer() {
         <div className="row sales-boxes">
           <CustomerBoxes />
         </div>
-        <CustomTable title="Transaction Activity" />
+        <TableDashboard title="Transaction Activity" />
       </div>
     </LayoutApp>
   );

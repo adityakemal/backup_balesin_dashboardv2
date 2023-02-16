@@ -1,9 +1,10 @@
 import React from "react";
 import CustomFilterHeader from "../shared/components/CustomFilterHeader";
 import CustomFunnelChart from "../shared/components/CustomFunnelChart";
-import CustomTable from "../shared/components/CustomTable";
+
 import LayoutApp from "../shared/components/LayoutApp";
 import ChatAnalytic from "./components/ChatAnalytic.jsx";
+import TableMarketing from "./components/TableMarketing";
 
 export default function MarketingContainer() {
   const dataFunnel = [
@@ -22,7 +23,7 @@ export default function MarketingContainer() {
         <ChatAnalytic />
         <CustomFilterHeader title="Customer Funneling" noFilter />
         <CustomFunnelChart data={dataFunnel} className="mb-4" />
-        <CustomTable title="Registration Activity" />
+        <TableMarketing title="Registration Activity" />
       </div>
     </LayoutApp>
   );

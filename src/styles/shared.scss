@@ -174,6 +174,10 @@
 
 }
 
+.title-box{
+    color: #8B8B8B;
+}
+
 
 .boxes-section{
     .box{
@@ -260,6 +264,16 @@
 }
 
 .custom-detail-modal{
+    .sourcebox{
+        .title, p{
+            font-size: 11px !important;
+            color: #CCCCCC;
+        }
+        p{
+            font-size: 11px !important;
+            color: black;
+        }
+    }
     .closemac{
         height: 13px;
         width: 13px;
@@ -284,6 +298,26 @@
     }
     li{
         list-style: none;
+    }
+
+    .box-chat{
+        height: 470px;
+        overflow-y: auto;
+        .buble{
+            .box{
+                font-size: 9px !important;
+                max-width: 75%;
+                border: 1px solid #E6E6E6;
+                padding: 10px;
+                background-color: white;
+            }
+            .ava{
+                background-color: maroon;
+                width: 30px;
+                height: 30px;
+                border-radius: 100%;
+            }
+        }
     }
 }
 
