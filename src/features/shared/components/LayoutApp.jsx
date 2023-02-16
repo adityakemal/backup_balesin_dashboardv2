@@ -16,7 +16,7 @@ export default function LayoutApp({ children, hideSidebar }) {
           </div>
           <div className="wrapcon">
             <Navbar />
-            <div className="px-4">
+            <div className="px-4 container">
               <AnimateWrapper>{children}</AnimateWrapper>
             </div>
           </div>

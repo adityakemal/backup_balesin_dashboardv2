@@ -259,3 +259,31 @@
     }
 }
 
+.custom-detail-modal{
+    .closemac{
+        height: 13px;
+        width: 13px;
+        border-radius: 100%;
+        background-color: red;
+        margin: 5px 10px;
+    }
+    .ant-modal, .ant-modal-content {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+    .title{
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+
+    span, .litem{
+        font-weight: 300;
+        font-size: 12px;
+    }
+    li{
+        list-style: none;
+    }
+}
+

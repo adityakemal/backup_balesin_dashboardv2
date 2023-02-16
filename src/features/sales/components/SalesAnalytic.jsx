@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import OutletSales from "../../dashboard/components/OutletSales";
 import SalesBoxes from "../../dashboard/components/SalesBoxes";
 import CustomBarChartStacked from "../../shared/components/CustomBarChartStacked";
 import OutletSection from "./OutletSection";

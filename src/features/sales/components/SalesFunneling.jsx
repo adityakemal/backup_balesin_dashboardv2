@@ -16,7 +16,7 @@ export default function SalesFunneling() {
         <CustomFunnelChart data={data} />
       </div>
       <div className="col-md-3">
-        <OutletSection title="TOP ITEM" customHeight={[446, 386]} />
+        <OutletSection title="TOP ITEM" customHeight={["430px", "330px"]} />
       </div>
     </div>
   );

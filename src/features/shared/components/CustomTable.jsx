@@ -1,9 +1,9 @@
-import React from "react";
-import { Button, Table, Tag } from "antd";
+import React, { useState } from "react";
+import { Button, Table, Tag, Modal } from "antd";
 import dayjs from "dayjs";
 import { rupiahFormat } from "../../../app/helper";
 
-export default function CustomTable({ title }) {
+export default function CustomTable({ title, detailComp }) {
   const dataSource = [0, 1, 1, 1, 2, 0, 1, 2, 2, 0].map((res, i) => ({
     order_id: i + 1,
     customer_name: "kemal",
@@ -47,23 +47,115 @@ export default function CustomTable({ title }) {
       key: "status",
       render: (v) =>
         v === 0 ? (
-          <Tag color="green">Delivered</Tag>
+          <b style={{ color: "green" }}>Delivered</b>
         ) : v === 2 ? (
-          <Tag color="red">Canceled</Tag>
+          <b style={{ color: "red" }}>Canceled</b>
         ) : (
-          <Tag color="default">Expired</Tag>
+          <b style={{ color: "#f7dc13" }}>Expired</b>
         ),
     },
     {
       title: "option",
       dataIndex: "option",
       key: "option",
-      render: () => <Button style={{ background: "#F7DC13" }}>Detail</Button>,
+      render: (_, res) => (
+        <Button
+          style={{ background: "#F7DC13" }}
+          onClick={() => showModal(res)}>
+          Detail
+        </Button>
+      ),
     },
   ];
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [dataModal, setDataModal] = useState(null);
+
+  const showModal = (data) => {
+    setDataModal(data);
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div className="gbox bg-white">
+      {/* ////////////// */}
+
+      <Modal
+        // title={`Detail`}
+        style={{ padding: "0px" }}
+        closable={false}
+        className="custom-detail-modal"
+        width="800px"
+        open={isModalOpen}
+        onOk={handleOk}
+        footer={null}
+        onCancel={handleCancel}>
+        <div className="header w-100 bg-warning d-flex justify-content-end">
+          <div className="pointer closemac" onClick={handleOk}></div>
+        </div>
+        <div className="container py-2 px-4">
+          <div className="row row-cols-md-3 row-cols-sm-2 gx-0 border-bottom">
+            <div className="col py-3">
+              <p className="title mb-0">ORDER DATE</p>
+              <span>01 Feb 2023</span>
+            </div>
+            <div className="col py-3">
+              <p className="title mb-0">ORDER ID</p>
+              <span>#0202038383</span>
+            </div>
+          </div>
+
+          <div className="row row-cols-md-3 row-cols-sm-2 row-cols-1 gx-0">
+            <div className="col py-3">
+              <p className="title mb-0">Name</p>
+              <span>Kemal Aditya </span>
+            </div>
+            <div className="col py-3">
+              <p className="title mb-0">Total</p>
+              <span>{rupiahFormat(234323)}</span>
+            </div>
+            <div className="col py-3">
+              <p className="title mb-0">Voucher</p>
+              <span>-</span>
+            </div>
+            <div className="col py-3">
+              <p className="title mb-0">Phone Number</p>
+              <span>08123242455 </span>
+            </div>
+            <div className="col py-3">
+              <p className="title mb-0">Order List</p>
+              <ul className="p-0">
+                <li>
+                  <p className="mb-0 litem">Paket Sedjuk 01</p>
+                  <span>{rupiahFormat(234323)}</span>
+                </li>
+                <li>
+                  <p className="mb-0 litem">Paket Sedjuk 02</p>
+                  <span>{rupiahFormat(234323)}</span>
+                </li>
+                <li>
+                  <p className="mb-0 litem">Minuman Es teh Manis dingin</p>
+                  <span>{rupiahFormat(234323)}</span>
+                </li>
+              </ul>
+            </div>
+            {/* <div className="col py-3">
+              <p className="title mb-0">Voucher</p>
+              <span>-</span>
+            </div> */}
+          </div>
+        </div>
+      </Modal>
+
+      {/* //////////////  */}
       <div className="tablecustom">
         <p className="title mb-0">{title}</p>
         <p className="date mb-0">12:15 PM at 16th January 2023</p>
