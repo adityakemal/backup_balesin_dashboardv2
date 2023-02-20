@@ -113,42 +113,42 @@ export default function DashboardContainer() {
 
   const dataSalesBox = [
     {
-      title: "dfsdfs",
+      title: "POTENTIAL SALES",
       info: "lorem ipsum dolor sit amet",
       content: "RP 7,050,500",
       footer_icon: "down",
       footer: `<span color='red'>fsf</span>`,
     },
     {
-      title: "dfsdfs",
+      title: "TOTAL SALES",
       info: "lorem ipsum dolor sit amet",
       content: "RP 7,050,500",
       footer_icon: "up",
       footer: `<span color='red'>fsf</span>`,
     },
     {
-      title: "dfsdfs",
+      title: "AVERAGE BASKET SIZE",
       info: "lorem ipsum dolor sit amet",
       content: "RP 7,050,500",
       footer_icon: "",
       footer: `<span color='red'>fsf</span>`,
     },
     {
-      title: "dfsdfs",
+      title: "DELIVERY METHOD",
       info: "lorem ipsum dolor sit amet",
       content: "RP 7,050,500",
       footer_icon: "",
       footer: `<span color='red'>fsf</span>`,
     },
     {
-      title: "dfsdfs",
+      title: "PAYMENT METHOD",
       info: "lorem ipsum dolor sit amet",
       content: "RP 7,050,500",
       footer_icon: "",
       footer: `<span color='red'>fsf</span>`,
     },
     {
-      title: "dfsdfs",
+      title: "TOP ITEM",
       info: "lorem ipsum dolor sit amet",
       content: "RP 7,050,500",
       footer_icon: "",

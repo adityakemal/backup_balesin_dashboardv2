@@ -1,4 +1,5 @@
 .marketing{
+
     .chat-percentage{
         height:330px ;
         .donat{
@@ -21,4 +22,38 @@
             }
         }
     }
+
+    .marketing-funneling{
+        .title{
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .date{
+            font-size: 10px;
+            color: #8B8B8B;
+        }
+
+        .tabsales{
+            .tab{
+                font-weight: bold;
+                background-color: #EDEDED80;
+                height: 40px;
+            }
+            .activetab{
+                background-color: $yellow;
+                border-radius: 5px 5px  0 0;
+            }
+          
+        }
+
+        .tablefunnel{
+            table{
+                font-size: 10px;
+                th{
+                    text-transform: capitalize;
+                    font-weight: bold;
+                }
+            }
+        }
+     }
 }

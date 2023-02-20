@@ -20,6 +20,8 @@ export default function PieChartSales({ dataSource }) {
   };
 
   const options = {
+    // responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       tooltip: {
         // enabled: false,
@@ -51,8 +53,8 @@ export default function PieChartSales({ dataSource }) {
   };
 
   return (
-    <>
-      <div className="w-50 customlegend">
+    <div className="gbox bg-white p-30 d-flex justify-content-between">
+      <div className=" customlegend">
         {/* <CustomLegend items={legendItems} onClick={handleClick} /> */}
         {dataSource.map((res, i) => (
           <ul>
@@ -74,14 +76,15 @@ export default function PieChartSales({ dataSource }) {
           </ul>
         ))}
       </div>
-      <div className="w-50">
+      <div className="" style={{ height: 210, width: 210 }}>
         <Pie
+          height={"210px"}
           data={data}
           options={options}
           // plugins={[{ afterDraw: updateLegend }]}
         />
       </div>
-    </>
+    </div>
   );
 }
 ///

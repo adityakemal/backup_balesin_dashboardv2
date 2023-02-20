@@ -33,8 +33,44 @@
         }
      }
 
+     .sales-funneling{
+        .title{
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .date{
+            font-size: 10px;
+            color: #8B8B8B;
+        }
+
+        .tabsales{
+            .tab{
+                font-weight: bold;
+                background-color: #EDEDED80;
+                height: 40px;
+            }
+            .activetab{
+                background-color: $yellow;
+                border-radius: 5px 5px  0 0;
+            }
+          
+        }
+
+        .tablefunnel{
+            table{
+                font-size: 10px;
+                th{
+                    text-transform: capitalize;
+                    font-weight: bold;
+                }
+            }
+        }
+     }
 
      .delivandpay{
+        .piebox{
+            // height: 250px;
+        }
         .customlegend{
             ul{
                 margin: 0;
@@ -52,3 +88,16 @@
      }
     
 }
+
+.ant-tabs {
+    &-nav {
+      display: flex;
+  
+      .ant-tabs-tab {
+        flex-grow: 1;
+        margin-right: 0px;
+        width: 100%;
+        text-align: center;
+      }
+    }
+  }

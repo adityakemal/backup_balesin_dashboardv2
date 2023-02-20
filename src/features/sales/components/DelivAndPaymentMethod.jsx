@@ -1,5 +1,6 @@
 import React from "react";
 import CustomFilterHeader from "../../shared/components/CustomFilterHeader";
+import OutletSection from "./OutletSection";
 import PieChartSales from "./PieChartSales";
 
 export default function DelivAndPaymentMethod() {
@@ -19,17 +20,19 @@ export default function DelivAndPaymentMethod() {
   return (
     <div className="delivandpay mb-4">
       <div className="row">
-        <div className="col-md-6">
-          <CustomFilterHeader title="Delivery Method" noFilter />
-          <div className="gbox bg-white p-30 d-flex ">
+        <div className="col-md-9">
+          <div className="piebox w-100 mb-3">
+            <CustomFilterHeader title="Delivery Method" noFilter />
             <PieChartSales dataSource={dataPie} />
           </div>
-        </div>
-        <div className="col-md-6">
-          <CustomFilterHeader title="Payment Method" noFilter />
-          <div className="gbox bg-white p-30 d-flex ">
+          <div className="piebox w-100">
+            <CustomFilterHeader title="Payment Method" noFilter />
             <PieChartSales dataSource={dataPie2} />
           </div>
+        </div>
+        <div className="col-md-3">
+          <CustomFilterHeader title="" noFilter />
+          <OutletSection title="TOP ITEM" customHeight={["625px", "540px"]} />
         </div>
       </div>
     </div>

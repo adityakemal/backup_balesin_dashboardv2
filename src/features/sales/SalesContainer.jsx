@@ -16,9 +16,8 @@ export default function SalesContainer() {
         <SalesAnalytic />
         <CustomFilterHeader title="Cancelled Order Analytic" noFilter />
         <CanceledAnalytic />
-        <CustomFilterHeader title="Sales Funneling Report" noFilter />
-        <SalesFunneling />
         <DelivAndPaymentMethod />
+        <SalesFunneling title="Sales Funneling Report" />
         <TableSales title="Transaction Activity" />
       </div>
     </LayoutApp>

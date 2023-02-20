@@ -7,32 +7,32 @@ import { Tooltip } from "antd";
 export default function CustomerBoxes() {
   const dataSalesBox = [
     {
-      title: "dfsdfs",
+      title: "TOTAL USER",
       info: "lorem ipsum dolor sit amet",
-      content: "RP 7,050,500",
+      content: "7,500",
       footer_icon: "down",
-      footer: `<span color='red'>fsf</span>`,
+      footer: `<span color='red'>from last week</span>`,
     },
     {
-      title: "dfsdfs",
+      title: "NUMBER OF REGISTRATION",
       info: "lorem ipsum dolor sit amet",
-      content: "RP 7,050,500",
+      content: "119",
       footer_icon: "up",
-      footer: `<span color='red'>fsf</span>`,
+      footer: `<span color='red'>from last week</span>`,
     },
     {
-      title: "dfsdfs",
+      title: "NUMBER OF ORDERS",
       info: "lorem ipsum dolor sit amet",
-      content: "RP 7,050,500",
+      content: "16",
       footer_icon: "",
-      footer: `<span color='red'>fsf</span>`,
+      footer: `<span color='red'>from last week</span>`,
     },
     {
-      title: "dfsdfs",
+      title: "CONVERSION",
       info: "lorem ipsum dolor sit amet",
-      content: "RP 7,050,500",
+      content: "0,28%",
       footer_icon: "",
-      footer: `<span color='red'>fsf</span>`,
+      footer: `<span color='red'>from last week</span>`,
     },
   ];
 

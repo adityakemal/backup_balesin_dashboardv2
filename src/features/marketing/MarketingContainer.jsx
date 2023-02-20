@@ -4,6 +4,7 @@ import CustomFunnelChart from "../shared/components/CustomFunnelChart";
 
 import LayoutApp from "../shared/components/LayoutApp";
 import ChatAnalytic from "./components/ChatAnalytic.jsx";
+import MarketingFunneling from "./components/MarketingFunneling";
 import TableMarketing from "./components/TableMarketing";
 
 export default function MarketingContainer() {
@@ -21,8 +22,8 @@ export default function MarketingContainer() {
         <CustomFilterHeader title="Marketing " />
         {/* <FilterHeader title="Sales Analytic" noFilter /> */}
         <ChatAnalytic />
-        <CustomFilterHeader title="Customer Funneling" noFilter />
-        <CustomFunnelChart data={dataFunnel} className="mb-4" />
+        <MarketingFunneling title="Marketing Funneling Report" />
+
         <TableMarketing title="Registration Activity" />
       </div>
     </LayoutApp>

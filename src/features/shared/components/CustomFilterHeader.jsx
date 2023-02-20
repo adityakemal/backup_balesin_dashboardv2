@@ -54,7 +54,9 @@ export default function CustomFilterHeader({ title, noFilter }) {
 
   return (
     <div className="filter-header d-flex flex-wrap justify-content-between mb-4 align-items-center mt-4">
-      <p className=" thead-dashboard mb-0">{title}</p>
+      <p
+        className=" thead-dashboard mb-0"
+        dangerouslySetInnerHTML={{ __html: title || "&nbsp;" }}></p>
       {!noFilter && (
         <div className="d-flex align-items-center flex-wrap">
           <RangePicker

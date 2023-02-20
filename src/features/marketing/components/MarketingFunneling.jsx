@@ -3,7 +3,7 @@ import CustomFunnelChart from "../../shared/components/CustomFunnelChart";
 import dayjs from "dayjs";
 import { Table } from "antd";
 
-export default function SalesFunneling({ title }) {
+export default function MarketingFunneling({ title }) {
   const [ActiveTab, setActiveTab] = useState(0);
   const data = [
     { width: "100%", name: "CHAT", value: 2020202, color: "#0090FF" },
@@ -58,7 +58,7 @@ export default function SalesFunneling({ title }) {
 
   const handleChangeTab = (val) => setActiveTab(val);
   return (
-    <section className="sales-funneling gbox bg-white mb-4">
+    <section className="marketing-funneling gbox bg-white mb-4 mt-4">
       <div className="title">{title}</div>
       <div className="date">12:15 PM at 16th January 2023</div>
       <div className="py-4  row">
