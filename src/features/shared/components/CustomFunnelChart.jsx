@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { numberFormat } from "../../../app/helper";
 
 export default function CustomFunnelChart({ data, activeTab }) {
   return (
@@ -12,7 +13,7 @@ export default function CustomFunnelChart({ data, activeTab }) {
               background: activeTab === i ? "#F7DC13" : "#EDEDED",
               width: `${100 - i * 10}%`,
             }}>
-            {res.name} <span>{res.value}</span>
+            {res.name} <span>{numberFormat(res.value)}</span>
           </li>
         ))}
       </ul>

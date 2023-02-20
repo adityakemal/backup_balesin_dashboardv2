@@ -165,16 +165,16 @@ export default function TableMarketing({ title, detailComp }) {
                   <div className="">
                     <p className="title mb-1">RECENT ORDER</p>
                     <p className="mb-1">
-                      <b className="text-primary">98483838383</b>
+                      <b className="text-success">98483838383</b>
                     </p>
                     <p className="mb-1">
-                      <b className="text-primary">98483838383</b>
+                      <b className="text-success">98483838383</b>
                     </p>
                     <p className="mb-1">
-                      <b className="text-primary">98483838383</b>
+                      <b className="text-success">98483838383</b>
                     </p>
                     <p className="mb-1">
-                      <b className="text-primary">98483838383</b>
+                      <b className="text-success">98483838383</b>
                     </p>
                   </div>
                   <div className=" w-50">

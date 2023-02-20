@@ -26,3 +26,11 @@ export const rupiahFormat = (value) =>
         currency: "IDR",
         maximumSignificantDigits: 20
     }).format(value);
+
+
+    export const numberFormat = (value) =>
+    new Intl.NumberFormat("id-ID", {
+        // style: '', // add Rp
+        currency: "IDR",
+        maximumSignificantDigits: 20
+    }).format(value);

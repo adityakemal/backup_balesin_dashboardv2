@@ -67,7 +67,7 @@ export default function SalesFunneling({ title }) {
         </div>
       </div>
       <div className="py-4 border-top">
-        <div className="tabsales d-flex justify-content-between mb-3">
+        <div className="tab-custom d-flex justify-content-between mb-3">
           {data.map((res, i) => (
             <div
               className={`tab d-flex justify-content-center align-items-center  w-100  pointer ${

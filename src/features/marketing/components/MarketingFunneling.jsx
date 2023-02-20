@@ -6,11 +6,12 @@ import { Table } from "antd";
 export default function MarketingFunneling({ title }) {
   const [ActiveTab, setActiveTab] = useState(0);
   const data = [
-    { width: "100%", name: "CHAT", value: 2020202, color: "#0090FF" },
-    { width: "90%", name: "REGISTRASI", value: 135, color: "#1AD598" },
+    { width: "100%", name: "CHAT", value: 20002, color: "#0090FF" },
+    { width: "90%", name: "REGISTRASI", value: 1350, color: "#1AD598" },
     { width: "80%", name: "CHECKOUT", value: 25, color: "#F7DC1366" },
     { width: "70%", name: "PAID TRANSACTION", value: 15, color: "#F7DC1399" },
     { width: "60%", name: "CANCELLED", value: 5, color: "#F7DC13" },
+    { width: "60%", name: "REPEAT", value: 5, color: "#F7DC13" },
   ];
   const dataSource = [0, 1, 1, 1, 2, 0].map((res, i) => ({
     date: new Date(),
@@ -67,7 +68,7 @@ export default function MarketingFunneling({ title }) {
         </div>
       </div>
       <div className="py-4 border-top">
-        <div className="tabsales d-flex justify-content-between mb-3">
+        <div className="tab-custom d-flex justify-content-between mb-3">
           {data.map((res, i) => (
             <div
               className={`tab d-flex justify-content-center align-items-center  w-100  pointer ${

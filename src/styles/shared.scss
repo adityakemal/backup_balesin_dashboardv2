@@ -153,6 +153,25 @@
 
 }
 
+.tab-custom{
+    .tab{
+        font-weight: bold;
+        background-color: #EDEDED80;
+        height: 40px;
+        transition: all .3s ease-in-out;
+        &:hover{
+            background-color: $yellow;
+            opacity: .6;
+            border-radius: 5px 5px  0 0;
+        }
+    }
+    .activetab{
+        background-color: $yellow;
+        border-radius: 5px 5px  0 0;
+    }
+  
+}
+
 
 .tablecustom{
     .title{
