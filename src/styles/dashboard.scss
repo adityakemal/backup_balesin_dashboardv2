@@ -79,13 +79,15 @@
                 padding-top: 0;
             }
             .area{
-                font-size: 20px;
+                // font-size: 18px;
+                font-size: 18px;
+                // font-size: 1vw;
                 margin-bottom: 0;
                 color: black;
             }
             .total{
                 color: #454545;
-                font-size: 18px;
+                font-size: 16px;
                 margin-bottom: 0;
             }
         }
@@ -93,3 +95,8 @@
     }
    
 }
+
+
+.select-container.ant-form-item-control-wrapper {
+    width: 100%;
+  }

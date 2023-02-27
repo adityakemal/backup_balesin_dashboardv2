@@ -1,31 +1,59 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getAddressList } from "./shared.api";
-
-
-
+import dayjs from "dayjs";
+import {  postStoreInfo } from "./shared.api";
 
 
 const sharedSclice = createSlice({
     name: 'shared',
     initialState: {
-        loadingAddress: false,
-        addressList: [],
+        loadingOutletList: false,
+        outletActive: {},
+        outletList: [],
+        dateRangeFilter : [
+            dayjs().add(-7, "d"),
+            dayjs(),
+          ]
+    },
+    reducers: {
+        handleActiveuOtlet: (state, { payload }) => {
+            console.log(payload, 'in reducers')
+            state.outletActive = payload 
+        },
 
+        handleDateRange: (state, { payload }) => {
+            console.log(payload, 'in reducers')
+            state.dateRangeFilter = payload 
+        }
     },
     extraReducers: {
         //get address
-        [getAddressList.pending]: (state, action) => {
-            state.loadingAddress = true
+        // [getAddressList.pending]: (state, action) => {
+        //     state.loadingAddress = true
+        // },
+        // [getAddressList.fulfilled]: (state, { payload }) => {
+        //     state.loadingAddress = false
+        //     state.addressList = payload.data
+        // },
+        // [getAddressList.rejected]: (state, action) => {
+        //     state.loadingAddress = false
+        // },
+        [postStoreInfo.pending]: (state, action) => {
+            state.loadingOutletList = true
         },
-        [getAddressList.fulfilled]: (state, { payload }) => {
-            state.loadingAddress = false
-            state.addressList = payload.data
+        [postStoreInfo.fulfilled]: (state, { payload }) => {
+            state.loadingOutletList = false
+            // console.log(payload, 'STORE INFO')
+            // state.addressList = payload.data
+            state.outletList = payload.outlets_info
         },
-        [getAddressList.rejected]: (state, action) => {
-            state.loadingAddress = false
+        [postStoreInfo.rejected]: (state, action) => {
+            state.loadingOutletList = false
         },
     }
 
 })
+
+export const { handleActiveuOtlet, handleDateRange } = sharedSclice.actions
+
 
 export default sharedSclice.reducer

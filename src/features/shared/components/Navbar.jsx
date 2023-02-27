@@ -6,28 +6,34 @@ import {
   ShoppingCartOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { IoChevronDown, IoChevronForwardOutline } from "react-icons/io5";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { IoChevronDown } from "react-icons/io5";
+import { useDispatch, useSelector } from "react-redux";
+import { postStoreInfo } from "../shared.api";
+import { handleActiveuOtlet } from "../shared.reducer";
 
 // import logo from "../../../images/balesinLogo.png";
 
 export default function Navbar() {
+  let location = useLocation();
+  let navigate = useNavigate();
+  const { outlet_id } = useParams();
+
+  const dispatch = useDispatch();
+  const { outletList, outletActive } = useSelector((state) => state.shared);
+  useEffect(() => {
+    const data = {
+      bot_id: localStorage.getItem("bot_id"),
+      store_id: localStorage.getItem("store_id"),
+    };
+    dispatch(postStoreInfo(data));
+  }, []);
+
   const handleLogout = () => {
     localStorage.clear();
     window.location.reload();
   };
-
-  // const menu = (
-  //   <Menu style={{ width: 200 }}>
-  //     <Menu.Item>
-  //       <Link to="/dashboard">Dashboard</Link>
-  //     </Menu.Item>
-  //     <Menu.Item onClick={handleLogout}>
-  //       <span className="text-danger">Keluar</span>
-  //     </Menu.Item>
-  //   </Menu>
-  // );
 
   const itemsMenu = [
     // {
@@ -49,40 +55,28 @@ export default function Navbar() {
 
   const dataOutlet = [
     {
-      key: 0,
-      value: "all",
+      key: -1,
+      value: -1,
       label: "All outlet",
     },
-    {
-      key: 1,
-      value: "lucy",
-      label: "SCBD",
-    },
-    {
-      key: 2,
-      value: "Yiminghe",
-      label: "Bandung",
-    },
-    {
-      key: 3,
-      value: "disabled",
-      label: "Jakarta",
-      disabled: true,
-    },
+    ...outletList.map((res, i) => ({
+      key: res.id,
+      value: res.id,
+      label: res.name,
+    })),
   ];
 
-  const [OutletActive, setOutletActive] = useState({
-    value: "all",
-    label: "All outlet",
-  });
-
-  const [isShown, setIsShown] = useState(false);
+  // useEffect(() => {
+  //   // dispatch(handleActiveuOtlet(dataOutlet[0]));
+  // }, []);
 
   const handleOutlet = ({ key }) => {
     const data = dataOutlet.find((res) => res.key == key);
-    setOutletActive(data);
+    const menuLocation = location.pathname.split("/")[1];
+    navigate(`/${menuLocation}/${data.value}`);
   };
 
+  const [isShown, setIsShown] = useState(false);
   return (
     <div className="navbar">
       <div className="container px-4">
@@ -93,15 +87,34 @@ export default function Navbar() {
           </div>
         </Link> */}
           <Dropdown
+            autosize={true}
             menu={{
               items: dataOutlet,
               onClick: handleOutlet,
             }}>
             <div
-              className="pointer"
+              className="pointer d-flex align-items-center  py-2 "
+              style={{
+                boxShadow: `0px 3px 6px #00000029`,
+                border: 0,
+                borderRadius: 10,
+              }}
               onMouseEnter={() => setIsShown(true)}
               onMouseLeave={() => setIsShown(false)}>
-              <Input
+              <ShopOutlined className="mx-3" />
+              <div className="" style={{ minWidth: 170 }}>
+                {outlet_id
+                  ? dataOutlet.find((res) => res.value == outlet_id)?.label
+                  : "All Outlet"}
+              </div>
+              <IoChevronDown
+                className="mx-3"
+                style={{
+                  transform: isShown ? "rotate(0deg)" : "rotate(-90deg)",
+                  transition: ".3s",
+                }}
+              />
+              {/* <Input
                 readOnly
                 style={{
                   boxShadow: `0px 3px 6px #00000029`,
@@ -118,20 +131,12 @@ export default function Navbar() {
                   />
                 }
                 placeholder="large size"
-                value={OutletActive.label}
-              />
+                value={dataOutlet.find((res) => res.value == outlet_id)?.label}
+              /> */}
             </div>
           </Dropdown>
 
           <div className="right d-flex align-items-center">
-            {/* <div className="icons">
-            <SearchOutlined />
-            <Link to="/cart">
-              <ShoppingCartOutlined />
-            </Link>
-            <BellOutlined />
-          </div> */}
-
             <div className="d-flex align-items-center">
               <p className="mb-0 name">Sedjuk Bakmi & Kopi</p>
               <Dropdown

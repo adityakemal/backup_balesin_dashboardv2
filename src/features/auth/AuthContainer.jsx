@@ -17,7 +17,7 @@ export default function AuthContainer() {
         </div>
 
         <div className=" box py-4 px-5 bg-white">
-          <h3 className="mb-2 text-center">Welcome back 👋</h3>
+          <h3 className="mb-2 text-center">Welcome to Dashboard 👋</h3>
           <p className="mb-4 text-center light">
             Sign in with your Balesin account
           </p>

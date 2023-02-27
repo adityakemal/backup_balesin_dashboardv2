@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { numberFormat } from "../../../app/helper";
 
-export default function CustomFunnelChart({ data, activeTab }) {
+export default function CustomFunnelChart({
+  data,
+  activeTab,
+  handleChangeTab,
+}) {
   return (
     <div className=" custom-funnelchart">
       <ul className="d-flex flex-column ">
@@ -9,6 +13,7 @@ export default function CustomFunnelChart({ data, activeTab }) {
           <li
             className="barbox px-3 justify-content-between d-flex align-items-center"
             key={i}
+            onClick={() => handleChangeTab(i)}
             style={{
               background: activeTab === i ? "#F7DC13" : "#EDEDED",
               width: `${100 - i * 10}%`,

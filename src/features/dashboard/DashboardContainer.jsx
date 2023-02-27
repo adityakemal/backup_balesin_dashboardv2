@@ -3,14 +3,37 @@ import React, { useState } from "react";
 import LayoutApp from "../shared/components/LayoutApp";
 import CustomFilterHeader from "../shared/components/CustomFilterHeader";
 
-import SalesBoxes from "./components/SalesBoxes";
+import DashboardBoxes from "./components/DashboardBoxes";
 import OutletSales from "./components/OutletSales";
 import CustomerBoxes from "./components/CustomerBoxes";
 
 import CustomBarChartStacked from "../shared/components/CustomBarChartStacked";
 import TableDashboard from "./components/TableDashboard";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { postOverView } from "./dashboard.api";
+import { useParams } from "react-router-dom";
+import dayjs from "dayjs";
 
 export default function DashboardContainer() {
+  const { outlet_id } = useParams();
+  const dispatch = useDispatch();
+
+  const { dateRangeFilter } = useSelector((state) => state.shared);
+  useEffect(() => {
+    const rangeFilterToString = [
+      dayjs(dateRangeFilter[0]).format("YYYY-MM-DD"),
+      dayjs(dateRangeFilter[1]).format("YYYY-MM-DD"),
+    ].toString();
+    const data = {
+      token: "",
+      outlet_id: outlet_id || -1,
+      store_id: localStorage.getItem("store_id"),
+      daterange: rangeFilterToString,
+    };
+    console.log(rangeFilterToString, "range dashboard");
+    dispatch(postOverView(data));
+  }, [outlet_id, dateRangeFilter]);
   const [dataSales, setDataSales] = useState([
     {
       nominal: "rp 20.000",
@@ -111,51 +134,6 @@ export default function DashboardContainer() {
     setDataSales(filtered);
   };
 
-  const dataSalesBox = [
-    {
-      title: "POTENTIAL SALES",
-      info: "lorem ipsum dolor sit amet",
-      content: "RP 7,050,500",
-      footer_icon: "down",
-      footer: `<span color='red'>fsf</span>`,
-    },
-    {
-      title: "TOTAL SALES",
-      info: "lorem ipsum dolor sit amet",
-      content: "RP 7,050,500",
-      footer_icon: "up",
-      footer: `<span color='red'>fsf</span>`,
-    },
-    {
-      title: "AVERAGE BASKET SIZE",
-      info: "lorem ipsum dolor sit amet",
-      content: "RP 7,050,500",
-      footer_icon: "",
-      footer: `<span color='red'>fsf</span>`,
-    },
-    {
-      title: "DELIVERY METHOD",
-      info: "lorem ipsum dolor sit amet",
-      content: "RP 7,050,500",
-      footer_icon: "",
-      footer: `<span color='red'>fsf</span>`,
-    },
-    {
-      title: "PAYMENT METHOD",
-      info: "lorem ipsum dolor sit amet",
-      content: "RP 7,050,500",
-      footer_icon: "",
-      footer: `<span color='red'>fsf</span>`,
-    },
-    {
-      title: "TOP ITEM",
-      info: "lorem ipsum dolor sit amet",
-      content: "RP 7,050,500",
-      footer_icon: "",
-      footer: `<span color='red'>fsf</span>`,
-    },
-  ];
-
   return (
     <LayoutApp>
       <div className="dashboard">
@@ -164,7 +142,7 @@ export default function DashboardContainer() {
         <div className="row">
           <div className="col-md-9">
             <div className="row sales-boxes">
-              <SalesBoxes data={dataSalesBox} />
+              <DashboardBoxes />
               <div className="col-md-12">
                 <CustomBarChartStacked
                   dataSales={dataSales}

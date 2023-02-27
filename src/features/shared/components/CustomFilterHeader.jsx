@@ -3,11 +3,14 @@ import dayjs from "dayjs";
 import { Button, DatePicker } from "antd";
 import { TbRefresh } from "react-icons/tb";
 import { DownloadOutlined } from "@ant-design/icons";
+import { useDispatch, useSelector } from "react-redux";
+import { handleDateRange } from "../shared.reducer";
 const { RangePicker } = DatePicker;
 
 export default function CustomFilterHeader({ title, noFilter }) {
+  const dispatch = useDispatch();
   const dateFormat = "DD MMM YYYY";
-  const [dateRangeFilter, setDateRangeFilter] = useState([]);
+  const { dateRangeFilter } = useSelector((state) => state.shared);
 
   const rangePresets = [
     {
@@ -27,28 +30,31 @@ export default function CustomFilterHeader({ title, noFilter }) {
       value: [dayjs().add(-90, "d"), dayjs()],
     },
   ];
+  console.log(rangePresets, "RANGE PRESETS");
   const onRangeChange = (dates, dateStrings) => {
     if (dates) {
       console.log("From: ", dates[0], ", to: ", dates[1]);
       console.log("From: ", dateStrings[0], ", to: ", dateStrings[1]);
-      console.log(
-        "From: ",
-        dayjs(dateStrings[0]).format("YYYY-MM-DD"),
-        ", to: ",
-        dayjs(dateStrings[1]).format("YYYY-MM-DD")
-      );
+      // console.log(
+      //   "From: ",
+      //   dayjs(dateStrings[0]).format("YYYY-MM-DD"),
+      //   ", to: ",
+      //   dayjs(dateStrings[1]).format("YYYY-MM-DD")
+      // );
 
-      const dateSales = [
-        dayjs(dateStrings[0]).format(dateFormat),
-        dayjs(dateStrings[1]).format(dateFormat),
-      ];
+      // const dateSales = [
+      //   dayjs(dateStrings[0]).format(dateFormat),
+      //   dayjs(dateStrings[1]).format(dateFormat),
+      // ];
 
-      console.log(dateSales, "sales");
+      // console.log(dateSales, "sales");
 
-      setDateRangeFilter(dates);
+      // setDateRangeFilter(dates);
+      dispatch(handleDateRange(dates));
     } else {
       console.log("Clear");
-      setDateRangeFilter([]);
+      // setDateRangeFilter([]);
+      dispatch(handleDateRange([]));
     }
   };
 
@@ -62,6 +68,7 @@ export default function CustomFilterHeader({ title, noFilter }) {
           <RangePicker
             presets={rangePresets}
             onChange={onRangeChange}
+            // allowClear={false}
             value={dateRangeFilter}
             size="large"
             style={{ width: 300 }}

@@ -20,7 +20,8 @@ function App() {
           }
         />
       ))}
-      <Route path="*" element={<Navigate to="/" />} />
+      {/* <Route path="*" element={<Navigate to="/" />} /> */}
+      <Route path="*" element={() => <div>404</div>} />
     </Routes>
   );
 }

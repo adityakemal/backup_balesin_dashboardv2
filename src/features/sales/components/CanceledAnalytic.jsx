@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import OutletSales from "../../dashboard/components/OutletSales";
-import SalesBoxes from "../../dashboard/components/SalesBoxes";
 import CustomBarChartStacked from "../../shared/components/CustomBarChartStacked";
+import CanceledBoxes from "./CanceledBoxes";
 
 import OutletSection from "./OutletSection";
 
@@ -123,7 +123,7 @@ export default function CanceledAnalytic() {
     <div className="row">
       <div className="col-md-9">
         <div className="row boxes-section">
-          <SalesBoxes data={dataSalesBox} />
+          <CanceledBoxes />
           <div className="col-md-12">
             <CustomBarChartStacked
               dataSales={dataSales}

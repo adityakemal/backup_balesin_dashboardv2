@@ -126,19 +126,40 @@
 // export default Login;
 
 import React from "react";
-import { useNavigate } from 'react-router-dom';
-import { Button, Form, Input } from "antd";
+import { useNavigate } from "react-router-dom";
+import { Button, Form, Input, notification } from "antd";
 
 import * as Yup from "yup";
+import { unwrapResult } from "@reduxjs/toolkit";
+import { useDispatch, useSelector } from "react-redux";
+import { postLogin } from "../auth.api";
 
 export default function Login() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { loading } = useSelector((state) => state.auth);
 
   const onFinish = (values) => {
     console.log("Success:", values);
-      localStorage.setItem('auth', true)
-         localStorage.setItem('token', 'dummy-token-here')
-         navigate('/dashboard')
+    // localStorage.setItem("auth", true);
+    // localStorage.setItem("token", "dummy-token-here");
+
+    dispatch(postLogin(values))
+      .then(unwrapResult)
+      .then(async (res) => {
+        console.log(res, "result api login");
+        await localStorage.setItem("auth", true);
+        await localStorage.setItem("bot_id", res.bot_id);
+        await localStorage.setItem("store_id", res.store_id);
+        await navigate("/dashboard/-1");
+      })
+      .catch((err) => {
+        console.log(err);
+        notification.error({
+          message: "Error Login",
+          description: "Please enter the correct email and password.",
+        });
+      });
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -170,6 +191,7 @@ export default function Login() {
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="on"
+        disabled={loading}
         layout={"vertical"}
         scrollToFirstError={true}>
         <Form.Item label="Email" name="email" rules={[yupSync]}>
@@ -181,11 +203,10 @@ export default function Login() {
         </Form.Item>
 
         <Form.Item>
-          <Button type="primary" htmlType="submit">
-            Submit
+          <Button type="primary" htmlType="submit" loading={loading}>
+            Sign In
           </Button>
         </Form.Item>
-        
       </Form>
     </div>
   );

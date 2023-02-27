@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import SalesBoxes from "../../dashboard/components/SalesBoxes";
+
 import CustomBarChartStacked from "../../shared/components/CustomBarChartStacked";
 import OutletSection from "./OutletSection";
+import SalesBoxes from "./SalesBoxes";
 
 export default function SalesAnalytic() {
   const [dataSales, setDataSales] = useState([
@@ -121,7 +122,7 @@ export default function SalesAnalytic() {
     <div className="row">
       <div className="col-md-9">
         <div className="row boxes-section">
-          <SalesBoxes data={dataSalesBox} />
+          <SalesBoxes />
           <div className="col-md-12">
             <CustomBarChartStacked
               dataSales={dataSales}

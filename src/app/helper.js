@@ -5,18 +5,22 @@ import {
 export const PublicRoute = ({ children }) => {
 
     const auth = localStorage.getItem('auth')
-    const token = localStorage.getItem('token')
+    // const token = localStorage.getItem('token')
+    const bot_id = localStorage.getItem('bot_id')
+    const store_id = localStorage.getItem('store_id')
 
 
-    if (auth && token) return <Navigate to="/dashboard" />
+    if (auth && bot_id && store_id) return <Navigate to="/dashboard/all" />
     return children;
 }
 
 export const PrivateRoute = ({ children }) => {
     const auth = localStorage.getItem('auth')
-    const token = localStorage.getItem('token')
+    // const token = localStorage.getItem('token')
+    const bot_id = localStorage.getItem('bot_id')
+    const store_id = localStorage.getItem('store_id')
 
-    if (!auth && !token) return <Navigate to="/" />
+    if (!auth && !bot_id && !store_id) return <Navigate to="/" />
     return children;
 }
 
@@ -24,7 +28,8 @@ export const rupiahFormat = (value) =>
     new Intl.NumberFormat("id-ID", {
         style: 'currency', // add Rp
         currency: "IDR",
-        maximumSignificantDigits: 20
+        // maximumSignificantDigits: 30
+        minimumFractionDigits: 0, //remove ,00
     }).format(value);
 
 
@@ -32,5 +37,6 @@ export const rupiahFormat = (value) =>
     new Intl.NumberFormat("id-ID", {
         // style: '', // add Rp
         currency: "IDR",
-        maximumSignificantDigits: 20
+        // maximumSignificantDigits: 30
+        minimumFractionDigits: 0,
     }).format(value);
