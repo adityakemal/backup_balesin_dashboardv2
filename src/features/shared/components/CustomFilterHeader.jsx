@@ -30,7 +30,6 @@ export default function CustomFilterHeader({ title, noFilter }) {
       value: [dayjs().add(-90, "d"), dayjs()],
     },
   ];
-  console.log(rangePresets, "RANGE PRESETS");
   const onRangeChange = (dates, dateStrings) => {
     if (dates) {
       console.log("From: ", dates[0], ", to: ", dates[1]);

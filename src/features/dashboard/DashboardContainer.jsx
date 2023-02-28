@@ -20,6 +20,8 @@ export default function DashboardContainer() {
   const dispatch = useDispatch();
 
   const { dateRangeFilter } = useSelector((state) => state.shared);
+  const { transactionActivity } = useSelector((state) => state.dashboard);
+
   useEffect(() => {
     const rangeFilterToString = [
       dayjs(dateRangeFilter[0]).format("YYYY-MM-DD"),
@@ -31,94 +33,131 @@ export default function DashboardContainer() {
       store_id: localStorage.getItem("store_id"),
       daterange: rangeFilterToString,
     };
-    console.log(rangeFilterToString, "range dashboard");
     dispatch(postOverView(data));
   }, [outlet_id, dateRangeFilter]);
+
+  useEffect(() => {
+    const dataWithStringDate = transactionActivity.map((res) => ({
+      ...res,
+      amountParseInt: parseInt(res.amount),
+      date: dayjs(res.date).format("DD/MMM/YYYY"),
+    }));
+    console.log(dataWithStringDate, "dataWithStringDate");
+
+    const makeKey = [...new Set(dataWithStringDate.map((res) => res.date))];
+    console.log(makeKey, "make key");
+
+    const finalDataByKey = makeKey.map((keyDate) => {
+      let filteredByDate = dataWithStringDate.filter(
+        (val) => val.date === keyDate
+      );
+
+      let FilterCanceledOrder = filteredByDate.filter(
+        (val) => val.status === "cancelled"
+      );
+      return {
+        label: keyDate,
+        list: filteredByDate,
+        potential_sales: filteredByDate
+          .map((res) => res.amount)
+          .reduce((a, b) => a + b), //reduce all amount
+        canceled_order: FilterCanceledOrder.map((res) => res.amount).reduce(
+          (a, b) => a + b,
+          0
+        ), //reduce all canceled amount
+      };
+    });
+
+    setDataSales(finalDataByKey);
+
+    console.log(finalDataByKey, "data by key");
+  }, [transactionActivity]);
+
   const [dataSales, setDataSales] = useState([
-    {
-      nominal: "rp 20.000",
-      label: "January",
-      data1: 10,
-      data2: 200,
-      data_line: 10,
-    },
-    {
-      nominal: "rp 20.000",
-      label: "February",
-      data1: 30,
-      data2: 111,
-      data_line: 20,
-    },
-    {
-      nominal: "rp 20.000",
-      label: "March",
-      data1: 70,
-      data2: 120,
-      data_line: 50,
-    },
-    {
-      nominal: "rp 20.000",
-      label: "April",
-      data1: 20,
-      data2: 100,
-      data_line: 10,
-    },
-    {
-      nominal: "rp 20.000",
-      label: "May",
-      data1: 90,
-      data2: 110,
-      data_line: 15,
-    },
-    {
-      nominal: "rp 20.000",
-      label: "June",
-      data1: 10,
-      data2: 30,
-      data_line: 80,
-    },
-    {
-      nominal: "rp 20.000",
-      label: "July",
-      data1: 30,
-      data2: 70,
-      data_line: 20,
-    },
-    {
-      nominal: "rp 20.000",
-      label: "Augustus",
-      data1: 30,
-      data2: 70,
-      data_line: 10,
-    },
-    {
-      nominal: "rp 20.000",
-      label: "September",
-      data1: 30,
-      data2: 110,
-      data_line: 60,
-    },
-    {
-      nominal: "rp 20.000",
-      label: "October",
-      data1: 100,
-      data2: 120,
-      data_line: 20,
-    },
-    {
-      nominal: "rp 20.000",
-      label: "November",
-      data1: 10,
-      data2: 120,
-      data_line: 10,
-    },
-    {
-      nominal: "rp 20.000",
-      label: "December",
-      data1: 10,
-      data2: 30,
-      data_line: 90,
-    },
+    // {
+    //   nominal: "rp 20.000",
+    //   label: "January",
+    //   data1: 10,
+    //   data2: 200,
+    //   data_line: 10,
+    // },
+    // {
+    //   nominal: "rp 20.000",
+    //   label: "February",
+    //   data1: 30,
+    //   data2: 111,
+    //   data_line: 20,
+    // },
+    // {
+    //   nominal: "rp 20.000",
+    //   label: "March",
+    //   data1: 70,
+    //   data2: 120,
+    //   data_line: 50,
+    // },
+    // {
+    //   nominal: "rp 20.000",
+    //   label: "April",
+    //   data1: 20,
+    //   data2: 100,
+    //   data_line: 10,
+    // },
+    // {
+    //   nominal: "rp 20.000",
+    //   label: "May",
+    //   data1: 90,
+    //   data2: 110,
+    //   data_line: 15,
+    // },
+    // {
+    //   nominal: "rp 20.000",
+    //   label: "June",
+    //   data1: 10,
+    //   data2: 30,
+    //   data_line: 80,
+    // },
+    // {
+    //   nominal: "rp 20.000",
+    //   label: "July",
+    //   data1: 30,
+    //   data2: 70,
+    //   data_line: 20,
+    // },
+    // {
+    //   nominal: "rp 20.000",
+    //   label: "Augustus",
+    //   data1: 30,
+    //   data2: 70,
+    //   data_line: 10,
+    // },
+    // {
+    //   nominal: "rp 20.000",
+    //   label: "September",
+    //   data1: 30,
+    //   data2: 110,
+    //   data_line: 60,
+    // },
+    // {
+    //   nominal: "rp 20.000",
+    //   label: "October",
+    //   data1: 100,
+    //   data2: 120,
+    //   data_line: 20,
+    // },
+    // {
+    //   nominal: "rp 20.000",
+    //   label: "November",
+    //   data1: 10,
+    //   data2: 120,
+    //   data_line: 10,
+    // },
+    // {
+    //   nominal: "rp 20.000",
+    //   label: "December",
+    //   data1: 10,
+    //   data2: 30,
+    //   data_line: 90,
+    // },
   ]);
 
   const [FilterKey, setFilterKey] = useState([]);

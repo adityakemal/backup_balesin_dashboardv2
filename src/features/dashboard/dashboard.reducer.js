@@ -9,7 +9,8 @@ const dashboardSlice = createSlice({
         loading: false,
         error: {},
         listOutletSales: [],
-        overViewData : {}
+        overViewData: {},
+        transactionActivity : []
         // isRegister: false
     },
     reducers: {
@@ -26,6 +27,8 @@ const dashboardSlice = createSlice({
             // console.log(payload, 'payload data dashboard')
             state.overViewData = payload
             state.listOutletSales = payload.list_outlet_sales
+            state.transactionActivity = payload.transaction_activity
+            
         },
         [postOverView.rejected]: (state, action) => {
             state.loading = false
