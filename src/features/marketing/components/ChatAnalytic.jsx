@@ -95,30 +95,30 @@ export default function ChatAnalytic() {
 
   const dataSalesBox = [
     {
-      title: "dfsdfs",
+      title: "TOTAL USER",
       info: "lorem ipsum dolor sit amet",
-      content: "RP 7,050,500",
+      content: "7,050",
       footer_icon: "down",
       footer: `<span color='red'>fsf</span>`,
     },
     {
-      title: "dfsdfs",
+      title: "NUMBER OF REGISTRATION",
       info: "lorem ipsum dolor sit amet",
-      content: "RP 7,050,500",
+      content: "134",
       footer_icon: "up",
       footer: `<span color='red'>fsf</span>`,
     },
     {
-      title: "dfsdfs",
+      title: "NUMBER OF ORDERS",
       info: "lorem ipsum dolor sit amet",
-      content: "RP 7,050,500",
+      content: "15",
       footer_icon: "",
       footer: `<span color='red'>fsf</span>`,
     },
     {
-      title: "dfsdfs",
+      title: "CONVERSION",
       info: "lorem ipsum dolor sit amet",
-      content: "RP 7,050,500",
+      content: "0,27%",
       footer_icon: "",
       footer: `<span color='red'>fsf</span>`,
     },
