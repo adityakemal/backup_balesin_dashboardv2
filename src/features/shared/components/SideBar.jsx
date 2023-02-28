@@ -27,13 +27,13 @@ export default function SideBar() {
       name: "Sales",
       path: `/sales/${outlet_id || ""}`,
       icon: <WalletOutlined className="icon" />,
-      disabled: true,
+      disabled: false,
     },
     {
       name: "Marketing",
       path: `/marketing/${outlet_id || ""}`,
       icon: <LineChartOutlined className="icon" />,
-      disabled: true,
+      disabled: false,
     },
   ];
 
