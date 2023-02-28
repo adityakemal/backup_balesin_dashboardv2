@@ -44,7 +44,7 @@ export default function DashboardContainer() {
     }));
     console.log(dataWithStringDate, "dataWithStringDate");
 
-    const makeKey = [...new Set(dataWithStringDate.map((res) => res.date))];
+    const makeKey = [...new Set(dataWithStringDate.map((res) => res.date))]; //remove duplicated key
     console.log(makeKey, "make key");
 
     const finalDataByKey = makeKey.map((keyDate) => {
@@ -60,7 +60,7 @@ export default function DashboardContainer() {
         list: filteredByDate,
         potential_sales: filteredByDate
           .map((res) => res.amount)
-          .reduce((a, b) => a + b), //reduce all amount
+          .reduce((a, b) => a + b, 0), //reduce all amount
         canceled_order: FilterCanceledOrder.map((res) => res.amount).reduce(
           (a, b) => a + b,
           0
@@ -73,92 +73,7 @@ export default function DashboardContainer() {
     console.log(finalDataByKey, "data by key");
   }, [transactionActivity]);
 
-  const [dataSales, setDataSales] = useState([
-    // {
-    //   nominal: "rp 20.000",
-    //   label: "January",
-    //   data1: 10,
-    //   data2: 200,
-    //   data_line: 10,
-    // },
-    // {
-    //   nominal: "rp 20.000",
-    //   label: "February",
-    //   data1: 30,
-    //   data2: 111,
-    //   data_line: 20,
-    // },
-    // {
-    //   nominal: "rp 20.000",
-    //   label: "March",
-    //   data1: 70,
-    //   data2: 120,
-    //   data_line: 50,
-    // },
-    // {
-    //   nominal: "rp 20.000",
-    //   label: "April",
-    //   data1: 20,
-    //   data2: 100,
-    //   data_line: 10,
-    // },
-    // {
-    //   nominal: "rp 20.000",
-    //   label: "May",
-    //   data1: 90,
-    //   data2: 110,
-    //   data_line: 15,
-    // },
-    // {
-    //   nominal: "rp 20.000",
-    //   label: "June",
-    //   data1: 10,
-    //   data2: 30,
-    //   data_line: 80,
-    // },
-    // {
-    //   nominal: "rp 20.000",
-    //   label: "July",
-    //   data1: 30,
-    //   data2: 70,
-    //   data_line: 20,
-    // },
-    // {
-    //   nominal: "rp 20.000",
-    //   label: "Augustus",
-    //   data1: 30,
-    //   data2: 70,
-    //   data_line: 10,
-    // },
-    // {
-    //   nominal: "rp 20.000",
-    //   label: "September",
-    //   data1: 30,
-    //   data2: 110,
-    //   data_line: 60,
-    // },
-    // {
-    //   nominal: "rp 20.000",
-    //   label: "October",
-    //   data1: 100,
-    //   data2: 120,
-    //   data_line: 20,
-    // },
-    // {
-    //   nominal: "rp 20.000",
-    //   label: "November",
-    //   data1: 10,
-    //   data2: 120,
-    //   data_line: 10,
-    // },
-    // {
-    //   nominal: "rp 20.000",
-    //   label: "December",
-    //   data1: 10,
-    //   data2: 30,
-    //   data_line: 90,
-    // },
-  ]);
+  const [dataSales, setDataSales] = useState([]);
 
   const [FilterKey, setFilterKey] = useState([]);
 
@@ -186,6 +101,7 @@ export default function DashboardContainer() {
                 <CustomBarChartStacked
                   dataSales={dataSales}
                   handleFilter={handleFilter}
+                  dateTitle={dateRangeFilter}
                 />
               </div>
             </div>

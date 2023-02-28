@@ -33,7 +33,11 @@ const borderRadiusAllCorners = {
   bottomLeft: 0,
   bottomRight: 0,
 };
-export default function CustomBarChartStacked({ dataSales, handleFilter }) {
+export default function CustomBarChartStacked({
+  dataSales,
+  handleFilter,
+  dateTitle,
+}) {
   const options = {
     // responsive: true,
     maintainAspectRatio: false,
@@ -162,13 +166,14 @@ export default function CustomBarChartStacked({ dataSales, handleFilter }) {
         <div className="charthead d-flex justify-content-between align-items-center mb-3">
           <div className="left">
             <p className="title mb-0">Sales Analytic</p>
-            <p className="date mb-0">12:15 PM at 16th January 2023</p>
+            <p className="date mb-0">
+              {dayjs(dateTitle[0]).format("DD MMMM YYYY")} to{" "}
+              {dayjs(dateTitle[1]).format("DD MMMM YYYY")}
+            </p>
           </div>
           <div className="right d-flex flex-wrap">
             {headData.map((res, i) => (
-              <div
-                className="pointer headbut d-flex align-items-center ms-3"
-                key={i}>
+              <div className=" headbut d-flex align-items-center ms-3" key={i}>
                 <div
                   className="colbox"
                   style={{ background: res.color_code }}></div>
