@@ -19,7 +19,7 @@ import axios from "axios"
 
 export const postStoreInfo = createAsyncThunk('shared/postStoreInfo', async (data, { rejectWithValue }) => {
     try {
-        const response = await axios.post(`${process.env.REACT_APP_API_URL}/storeinfo`, data)
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/store/info`, data)
 
         // console.log(response)
         return response.data
