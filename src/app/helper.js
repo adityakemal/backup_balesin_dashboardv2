@@ -24,7 +24,7 @@ export const PrivateRoute = ({ children }) => {
     return children;
 }
 
-export const rupiahFormat = (value) =>
+export const rupiahFormat = (value) => value &&
     new Intl.NumberFormat("id-ID", {
         style: 'currency', // add Rp
         currency: "IDR",
@@ -33,7 +33,7 @@ export const rupiahFormat = (value) =>
     }).format(value);
 
 
-    export const numberFormat = (value) =>
+    export const numberFormat = (value) => value &&
     new Intl.NumberFormat("id-ID", {
         // style: '', // add Rp
         currency: "IDR",

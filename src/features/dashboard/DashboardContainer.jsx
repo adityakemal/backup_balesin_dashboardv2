@@ -14,6 +14,7 @@ import { useEffect } from "react";
 import { postOverView } from "./dashboard.api";
 import { useParams } from "react-router-dom";
 import dayjs from "dayjs";
+import BarChartDashboard from "./components/BarChartDashboard";
 
 export default function DashboardContainer() {
   const { outlet_id } = useParams();
@@ -52,40 +53,53 @@ export default function DashboardContainer() {
         (val) => val.date === keyDate
       );
 
-      let FilterCanceledOrder = filteredByDate.filter(
+      let filterCanceledOrder = filteredByDate.filter(
         (val) => val.status === "cancelled"
       );
+
+      let filterExpiredOrder = filteredByDate.filter(
+        (val) => val.status === "expired"
+      );
+
+      let filterLossSales = [...filterCanceledOrder, ...filterExpiredOrder].map(
+        (res) => res.amount
+      );
+
       return {
         label: keyDate,
         list: filteredByDate,
         potential_sales: filteredByDate
           .map((res) => res.amount)
           .reduce((a, b) => a + b, 0), //reduce all amount
-        canceled_order: FilterCanceledOrder.map((res) => res.amount).reduce(
-          (a, b) => a + b,
-          0
-        ), //reduce all canceled amount
+        canceled_order: filterCanceledOrder
+          .map((res) => res.amount)
+          .reduce((a, b) => a + b, 0), //reduce all canceled amount
+        expired_order: filterExpiredOrder
+          .map((res) => res.amount)
+          .reduce((a, b) => a + b, 0), //reduce all expired amount
+        loss_sales: filterLossSales.reduce((a, b) => a + b, 0),
+        total_order: filteredByDate.length,
       };
     });
 
-    setDataSales(finalDataByKey);
+    setChartData(finalDataByKey);
 
     console.log(finalDataByKey, "data by key");
   }, [transactionActivity]);
 
-  const [dataSales, setDataSales] = useState([]);
+  const [chartData, setChartData] = useState([]);
 
   const [FilterKey, setFilterKey] = useState([]);
 
   const handleFilter = (key) => {
-    const filtered = dataSales.map((res) => {
+    const filtered = chartData.map((res) => {
       const response = res;
 
       delete response[key];
       return response;
     });
 
-    setDataSales(filtered);
+    setChartData(filtered);
   };
 
   return (
@@ -93,20 +107,19 @@ export default function DashboardContainer() {
       <div className="dashboard">
         <CustomFilterHeader title="Dashboard Overview" />
         {/* <button onClick={() => handleFilter("data1")}>remove data1</button> */}
-        <div className="row">
-          <div className="col-md-9">
+        <div className="row gy-4 mb-4">
+          <div className="col-lg-9">
             <div className="row sales-boxes">
               <DashboardBoxes />
-              <div className="col-md-12">
-                <CustomBarChartStacked
-                  dataSales={dataSales}
-                  handleFilter={handleFilter}
-                  dateTitle={dateRangeFilter}
-                />
-              </div>
+
+              <BarChartDashboard
+                chartData={chartData}
+                handleFilter={handleFilter}
+                dateTitle={dateRangeFilter}
+              />
             </div>
           </div>
-          <div className="col-md-3">
+          <div className="col-lg-3">
             <OutletSales />
           </div>
         </div>
@@ -114,7 +127,7 @@ export default function DashboardContainer() {
         <div className="row sales-boxes">
           <CustomerBoxes />
         </div>
-        <TableDashboard title="Transaction Activity" />
+        <TableDashboard title="Top Transaction" dateTitle={dateRangeFilter} />
       </div>
     </LayoutApp>
   );

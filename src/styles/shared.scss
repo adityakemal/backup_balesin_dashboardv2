@@ -15,6 +15,9 @@
     }
 
     .right {
+        .name{
+            text-transform: capitalize;
+        }
         .icons {
             svg {
                 cursor: pointer;

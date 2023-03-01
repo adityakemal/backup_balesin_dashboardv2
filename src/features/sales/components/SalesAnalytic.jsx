@@ -119,11 +119,11 @@ export default function SalesAnalytic() {
   ];
 
   return (
-    <div className="row">
-      <div className="col-md-9">
+    <div className="row gy-4 mb-4">
+      <div className="col-lg-9">
         <div className="row boxes-section">
           <SalesBoxes />
-          <div className="col-md-12">
+          <div className="col-lg-12">
             <CustomBarChartStacked
               dataSales={dataSales}
               handleFilter={handleFilter}
@@ -131,7 +131,7 @@ export default function SalesAnalytic() {
           </div>
         </div>
       </div>
-      <div className="col-md-3">
+      <div className="col-lg-3">
         <OutletSection title="OUTLET SALES" />
       </div>
     </div>

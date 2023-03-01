@@ -58,7 +58,7 @@ export default function CustomFilterHeader({ title, noFilter }) {
   };
 
   return (
-    <div className="filter-header d-flex flex-wrap justify-content-between mb-4 align-items-center mt-4">
+    <div className="filter-header d-flex flex-wrap justify-content-between mb-4 align-items-center ">
       <p
         className=" thead-dashboard mb-0"
         dangerouslySetInnerHTML={{ __html: title || "&nbsp;" }}></p>

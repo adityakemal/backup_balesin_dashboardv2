@@ -21,7 +21,9 @@ export default function Navbar() {
   const { outlet_id } = useParams();
 
   const dispatch = useDispatch();
-  const { outletList, outletActive } = useSelector((state) => state.shared);
+  const { outletList, outletActive, mainStoreInfo } = useSelector(
+    (state) => state.shared
+  );
   useEffect(() => {
     const data = {
       bot_id: localStorage.getItem("bot_id"),
@@ -79,7 +81,7 @@ export default function Navbar() {
   const [isShown, setIsShown] = useState(false);
   return (
     <div className="navbar">
-      <div className="container px-4">
+      <div className="container-lg px-4">
         <div className="d-flex justify-content-between align-items-center w-100">
           {/* <Link to={"/home"}>
           <div className="left d-flex align-items-center">
@@ -138,13 +140,21 @@ export default function Navbar() {
 
           <div className="right d-flex align-items-center">
             <div className="d-flex align-items-center">
-              <p className="mb-0 name">Sedjuk Bakmi & Kopi</p>
+              <p className="mb-0 name">{mainStoreInfo?.name}</p>
               <Dropdown
                 menu={{
                   items: itemsMenu,
                 }}>
                 <div className="profilepic d-flex justify-content-center align-items-center">
-                  <UserOutlined style={{ fontSize: 23 }} />
+                  {mainStoreInfo?.image ? (
+                    <img
+                      src={mainStoreInfo?.image}
+                      alt="store-image"
+                      className="img-fluid"
+                    />
+                  ) : (
+                    <UserOutlined style={{ fontSize: 23 }} />
+                  )}
                 </div>
               </Dropdown>
             </div>

@@ -8,6 +8,7 @@ const sharedSclice = createSlice({
     initialState: {
         loadingOutletList: false,
         outletActive: {},
+        mainStoreInfo : {},
         outletList: [],
         dateRangeFilter : [
             dayjs().add(-7, "d"),
@@ -42,6 +43,7 @@ const sharedSclice = createSlice({
         },
         [postStoreInfo.fulfilled]: (state, { payload }) => {
             state.loadingOutletList = false
+            state.mainStoreInfo = payload.main_store_info
             // console.log(payload, 'STORE INFO')
             // state.addressList = payload.data
             state.outletList = payload.outlets_info

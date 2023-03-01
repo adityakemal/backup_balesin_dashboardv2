@@ -12,7 +12,6 @@ import {
   registerables,
 } from "chart.js";
 import { Chart } from "react-chartjs-2";
-import dayjs from "dayjs";
 
 ChartJS.register(
   CategoryScale,
@@ -33,11 +32,7 @@ const borderRadiusAllCorners = {
   bottomLeft: 0,
   bottomRight: 0,
 };
-export default function CustomBarChartStacked({
-  dataSales,
-  handleFilter,
-  dateTitle,
-}) {
+export default function CustomBarChartStacked({ dataSales, handleFilter }) {
   const options = {
     // responsive: true,
     maintainAspectRatio: false,
@@ -55,11 +50,6 @@ export default function CustomBarChartStacked({
         grid: {
           display: false,
         },
-        ticks: {
-          font: {
-            size: 9,
-          },
-        },
       },
       y: {
         stacked: false,
@@ -68,38 +58,35 @@ export default function CustomBarChartStacked({
         },
         ticks: {
           // forces step size to be 50 units
-          // stepSize: 50,
+          stepSize: 50,
         },
       },
     },
     plugins: {
       datalabels: false,
       tooltip: {
-        // displayColors: false,
+        displayColors: false,
         titleFont: {
-          size: 18,
+          size: 20,
         },
         bodyFont: {
-          size: 12,
+          size: 10,
         },
         footerFont: {
-          size: 12, // there is no footer by default
+          size: 10, // there is no footer by default
         },
         callbacks: {
-          // beforeTitle: (c) => {
-          //   return "before title";
-          // },
+          beforeTitle: (c) => {
+            return "before title";
+          },
           title: (c) => {
             // console.log(c);
             // console.log(c[0].dataIndex, "iininininininininin <<<<<<<<<<<<<<<");
-            const labelReformat = dayjs(
-              new Date(dataSales[c[0].dataIndex].label)
-            ).format("DD MMMM YYYY");
-            return `${labelReformat}`;
+            return `Nominal Rp ${dataSales[c[0].dataIndex].nominal}`;
           },
-          // afterTitle: (c) => {
-          //   return "after title";
-          // },
+          afterTitle: (c) => {
+            return "after title";
+          },
         },
       },
       legend: {
@@ -114,12 +101,12 @@ export default function CustomBarChartStacked({
   };
 
   const data = {
-    labels: dataSales.map((res) => res.label),
+    labels: dataSales.map((res) => res.label.substring(0, 3)),
     datasets: [
       {
         type: "line",
-        label: "Total Order",
-        data: dataSales.map((res) => res.potential_sales),
+        label: "Line 1",
+        data: dataSales.map((res) => res.data_line),
         backgroundColor: "#FF0000",
         borderWidth: 2,
         borderColor: "#FF0000",
@@ -128,16 +115,16 @@ export default function CustomBarChartStacked({
       },
       {
         type: "bar",
-        label: "Canceled Order",
-        data: dataSales.map((res) => res.canceled_order),
+        label: "Dataset 1",
+        data: dataSales.map((res) => res.data1),
         backgroundColor: "#8B8B8B",
         borderRadius: borderRadiusAllCorners,
         borderSkipped: false,
       },
       {
         type: "bar",
-        label: "Potential Sales",
-        data: dataSales.map((res) => res.potential_sales),
+        label: "Dataset 2",
+        data: dataSales.map((res) => res.data2),
         backgroundColor: "#F7DC13",
         borderRadius: borderRadiusAllCorners,
         borderSkipped: false,
@@ -147,33 +134,25 @@ export default function CustomBarChartStacked({
 
   const onClick = () => {};
 
-  // const headData = [
-  //   { name: "Potential Sales", color_code: "#F7DC13", data: [] },
-  //   { name: "Cancelled Order", color_code: "#8B8B8B", data: [] },
-  //   { name: "Total Order", color_code: "#FF0000", data: [] },
-  // ];
-  const headData = data.datasets
-    .map((res) => ({
-      name: res.label,
-      color_code: res.backgroundColor,
-      data: res.data,
-    }))
-    .reverse();
+  const headData = [
+    { name: "Potential Sales", color_code: "#F7DC13", data: [] },
+    { name: "Cancelled Order", color_code: "#8B8B8B", data: [] },
+    { name: "Total Order", color_code: "#FF0000", data: [] },
+  ];
 
   return (
     <>
       <div className="custom-stackedchart gbox bg-white">
         <div className="charthead d-flex justify-content-between align-items-center mb-3">
           <div className="left">
-            <p className="title mb-0">Sales Analytic</p>
-            <p className="date mb-0">
-              {dayjs(dateTitle[0]).format("DD MMMM YYYY")} to{" "}
-              {dayjs(dateTitle[1]).format("DD MMMM YYYY")}
-            </p>
+            <p className="title mb-0">Chart Sales Analytic</p>
+            <p className="date mb-0">12:15 PM at 16th January 2023</p>
           </div>
           <div className="right d-flex flex-wrap">
             {headData.map((res, i) => (
-              <div className=" headbut d-flex align-items-center ms-3" key={i}>
+              <div
+                className="pointer headbut d-flex align-items-center ms-3"
+                key={i}>
                 <div
                   className="colbox"
                   style={{ background: res.color_code }}></div>
