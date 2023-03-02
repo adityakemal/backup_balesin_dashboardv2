@@ -25,12 +25,30 @@ $yellow : #fd0;
 $light-grey : #e5e5e59c;
 $smoke: #E8E8E8;
 $blue : #0090FF;
-$green: #41A944;
-$red: #E5452D;
+$green: #1AD598;
+$red: #FF0000;
 
 
 .text-blue{
     color: $blue;
+}
+
+.text-danger{
+    color: $red !important;
+}
+.bg-danger{
+    background: $red !important;
+}
+
+.text-success{
+    color: $green !important;
+}
+
+.text-warning{
+    color: $yellow !important;
+}
+.bg-warning{
+    background: $yellow !important;
 }
 
 
@@ -106,6 +124,8 @@ $red: #E5452D;
 .strike{
     text-decoration: line-through;
 }
+
+
 
 
 @import './styles/auth.scss';

@@ -5,14 +5,25 @@ import { Button, Modal, Table } from "antd";
 import { rupiahFormat } from "../../../app/helper";
 
 export default function SalesFunneling({ title }) {
-  const [ActiveTab, setActiveTab] = useState(0);
-  const data = [
-    { width: "100%", name: "CHAT", value: 2020202, color: "#0090FF" },
-    { width: "90%", name: "REGISTRASI", value: 135, color: "#1AD598" },
-    { width: "80%", name: "CHECKOUT", value: 25, color: "#F7DC1366" },
-    { width: "70%", name: "PAID TRANSACTION", value: 15, color: "#F7DC1399" },
-    { width: "60%", name: "CANCELLED", value: 5, color: "#F7DC13" },
-  ];
+  const [data] = useState([
+    { name: "CHAT", value: 2020202 },
+    { name: "REGISTRATION", value: 135 },
+    { name: "CHECKOUT", value: 25 },
+    { name: "PAID", value: 15 },
+    { name: "DELIVERED", value: 15, className: "text-success" },
+    // { name: "CANCELLED", value: 5, color: "#F7DC13" },
+  ]);
+
+  const [data2] = useState([
+    { name: "CHAT", value: 2020202 },
+    { name: "REGISTRATION", value: 135 },
+    { name: "CHECKOUT", value: 25 },
+    { name: "PAID", value: 15 },
+    // { name: "DELIVERED", value: 15, },
+    { name: "CANCELLED", value: 5, className: "text-danger" },
+  ]);
+
+  const [ActiveTab, setActiveTab] = useState(data[0].name || "");
   const dataSource = [0, 1, 1, 1, 2, 0].map((res, i) => ({
     date: new Date(),
     time: new Date(),
@@ -99,6 +110,7 @@ export default function SalesFunneling({ title }) {
   };
 
   const handleChangeTab = (val) => setActiveTab(val);
+
   return (
     <section className="sales-funneling gbox bg-white mb-4">
       <Modal
@@ -252,9 +264,24 @@ export default function SalesFunneling({ title }) {
       <div className="title">{title}</div>
       <div className="date">12:15 PM at 16th January 2023</div>
       <div className="py-4  row">
-        <div className="col-md-6">
+        <div className="col-md-12 mb-3">
           <CustomFunnelChart
-            data={data}
+            data={[...data].splice(0, 1)}
+            activeTab={ActiveTab}
+            handleChangeTab={handleChangeTab}
+          />
+        </div>
+        <div className="col-6">
+          <CustomFunnelChart
+            data={[...data].splice(1, data.length)}
+            activeTab={ActiveTab}
+            handleChangeTab={handleChangeTab}
+          />
+        </div>
+        <div className="col-6">
+          <CustomFunnelChart
+            isReverse
+            data={[...data2].splice(1, data.length)}
             activeTab={ActiveTab}
             handleChangeTab={handleChangeTab}
           />
@@ -274,7 +301,7 @@ export default function SalesFunneling({ title }) {
           ))}
         </div> */}
         <div className="title mb-4" style={{ textTransform: "capitalize" }}>
-          {data[ActiveTab].name.toLocaleLowerCase()} List
+          {ActiveTab.toLocaleLowerCase()} List
         </div>
         {/* <div className="date">12:15 PM at 16th January 2023</div> */}
         <div className="tablefunnel">
