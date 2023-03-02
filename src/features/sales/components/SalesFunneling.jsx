@@ -304,7 +304,7 @@ export default function SalesFunneling({ title }) {
           {ActiveTab.toLocaleLowerCase()} List
         </div>
         {/* <div className="date">12:15 PM at 16th January 2023</div> */}
-        <div className="tablefunnel">
+        <div className="tablecustom">
           <Table dataSource={dataSource} columns={columns} />
         </div>
       </div>

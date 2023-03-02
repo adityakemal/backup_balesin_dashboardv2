@@ -105,10 +105,10 @@ export default function DashboardContainer() {
   return (
     <LayoutApp>
       <div className="dashboard">
-        <CustomFilterHeader title="Dashboard Overview" />
+        <CustomFilterHeader title="Dashboard" />
         {/* <button onClick={() => handleFilter("data1")}>remove data1</button> */}
         <div className="row gy-4 mb-4">
-          <div className="col-lg-9">
+          <div className="col-xl-9">
             <div className="row sales-boxes">
               <DashboardBoxes />
 
@@ -119,14 +119,12 @@ export default function DashboardContainer() {
               />
             </div>
           </div>
-          <div className="col-lg-3">
+          <div className="col-xl-3">
             <OutletSales />
           </div>
         </div>
         <CustomFilterHeader title="Customer Overview" noFilter />
-        <div className="row sales-boxes">
-          <CustomerBoxes />
-        </div>
+        <CustomerBoxes />
         <TableDashboard title="Top Transaction" dateTitle={dateRangeFilter} />
       </div>
     </LayoutApp>

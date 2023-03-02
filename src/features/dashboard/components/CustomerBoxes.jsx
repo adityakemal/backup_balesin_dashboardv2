@@ -37,9 +37,9 @@ export default function CustomerBoxes() {
   ];
 
   return (
-    <>
+    <div className="row sales-boxes">
       {dataSalesBox.map((res, i) => (
-        <div className="col-lg-3 mb-4" key={i}>
+        <div className="col-md-6 col-lg-6 col-xl-3 mb-4" key={i}>
           <div className="box bg-white gbox ">
             <div className="d-flex align-items-center title-box ">
               <p className=" mb-0 me-2">{res?.title}</p>
@@ -77,6 +77,6 @@ export default function CustomerBoxes() {
           </div>
         </div>
       ))}
-    </>
+    </div>
   );
 }

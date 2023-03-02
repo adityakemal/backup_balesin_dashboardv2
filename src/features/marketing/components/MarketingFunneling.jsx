@@ -72,6 +72,7 @@ export default function MarketingFunneling({ title }) {
       key: "option",
       render: (_, res) => (
         <Button
+          // type='text'
           style={{ background: "#F7DC13" }}
           onClick={() => showModal(res)}>
           Detail
@@ -304,7 +305,7 @@ export default function MarketingFunneling({ title }) {
           {ActiveTab.toLocaleLowerCase()} List
         </div>
         {/* <div className="date">12:15 PM at 16th January 2023</div> */}
-        <div className="tablefunnel">
+        <div className="tablecustom">
           <Table dataSource={dataSource} columns={columns} />
         </div>
       </div>

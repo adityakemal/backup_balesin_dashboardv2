@@ -58,45 +58,60 @@ export default function CustomFilterHeader({ title, noFilter }) {
   };
 
   return (
-    <div className="filter-header d-flex flex-wrap justify-content-between mb-4 align-items-center ">
-      <p
-        className=" thead-dashboard mb-0"
-        dangerouslySetInnerHTML={{ __html: title || "&nbsp;" }}></p>
-      {!noFilter && (
-        <div className="d-flex align-items-center flex-wrap">
-          <RangePicker
-            presets={rangePresets}
-            onChange={onRangeChange}
-            // allowClear={false}
-            value={dateRangeFilter}
-            size="large"
-            style={{ width: 300 }}
-            format={dateFormat}
-            disabledDate={(current) =>
-              current && current > dayjs().endOf("day")
-            }
-            showNow
-          />
-          <Button
-            className="ms-4"
-            style={{ background: "#F7DC13" }}
-            size="large">
-            <div className="d-flex align-items-center text-dark">
-              <TbRefresh className="me-2" />
-              Refresh
-            </div>
-          </Button>
-          <Button
-            className="ms-4"
-            style={{ background: "#0090FF", color: "white" }}
-            size="large">
-            <div className="d-flex align-items-center text-white">
-              <DownloadOutlined className="me-2" />
-              Generate Report
-            </div>
-          </Button>
+    <div className="filter-header mb-4">
+      <div className="row">
+        <div className="col-xl-8 order-2 order-xl-0">
+          <div className="d-flex justify-content-between align-items-center">
+            <p
+              className=" thead-dashboard mb-0"
+              dangerouslySetInnerHTML={{ __html: title || "&nbsp;" }}></p>
+            {!noFilter && (
+              <RangePicker
+                className=" daterange"
+                presets={rangePresets}
+                onChange={onRangeChange}
+                // allowClear={false}
+                value={dateRangeFilter}
+                size="large"
+                format={dateFormat}
+                disabledDate={(current) =>
+                  current && current > dayjs().endOf("day")
+                }
+                showNow
+              />
+            )}
+          </div>
         </div>
-      )}
+        <div className="col-xl-4 col-6 offset-6 offset-xl-0 mb-3 mb-xl-0">
+          {/* <div className="col-xl-4 mb-3 mb-xl-0"> */}
+          {!noFilter && (
+            <div className="row">
+              <div className="col-6">
+                <Button
+                  className="w-100"
+                  style={{ background: "#F7DC13" }}
+                  size="large">
+                  <div className="d-flex align-items-center text-dark">
+                    <TbRefresh className="me-2" />
+                    Refresh
+                  </div>
+                </Button>
+              </div>
+              <div className="col-6">
+                <Button
+                  className="w-100 text-center"
+                  style={{ background: "#0090FF", color: "white" }}
+                  size="large">
+                  <div className="d-flex align-items-center text-white">
+                    <DownloadOutlined className="me-2" />
+                    Download
+                  </div>
+                </Button>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

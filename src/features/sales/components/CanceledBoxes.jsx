@@ -91,7 +91,7 @@ export default function CanceledBoxes() {
   return (
     <>
       {dataSalesBox.map((res, i) => (
-        <div className="col-md-4 mb-4" key={i}>
+        <div className="col-lg-4 col-md-6 mb-4" key={i}>
           <div className="box bg-white gbox ">
             <div className="d-flex align-items-center title-box ">
               <p className=" mb-0 me-2">{res?.title}</p>
