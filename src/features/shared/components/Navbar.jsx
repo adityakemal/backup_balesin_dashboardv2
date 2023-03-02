@@ -1,6 +1,7 @@
 import { Menu, Dropdown, Select, Input } from "antd";
 import {
   BellOutlined,
+  LogoutOutlined,
   SearchOutlined,
   ShopOutlined,
   ShoppingCartOutlined,
@@ -8,7 +9,7 @@ import {
 } from "@ant-design/icons";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { IoChevronDown } from "react-icons/io5";
+import { IoChevronDown, IoLogOut } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { postStoreInfo } from "../shared.api";
 import { handleActiveuOtlet } from "../shared.reducer";
@@ -47,9 +48,10 @@ export default function Navbar() {
       label: (
         <div
           onClick={handleLogout}
-          className="text-danger"
+          className="text-danger d-flex align-items-center"
           style={{ width: 130 }}>
-          Keluar
+          <IoLogOut className="me-1" />
+          Sign Out
         </div>
       ),
     },

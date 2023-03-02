@@ -126,6 +126,20 @@ $red: #FF0000;
     text-decoration: line-through;
 }
 
+.disable_mobile_screen{
+    z-index: 99999999999;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgb(58, 57, 57);
+    color: whitesmoke;
+}
+
 
 
 

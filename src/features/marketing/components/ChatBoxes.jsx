@@ -8,7 +8,7 @@ export default function ChatBoxes({ data }) {
   return (
     <div className="row boxes-section gy-4">
       {data.map((res, i) => (
-        <div className="col-lg-3 col-md-6" key={i}>
+        <div className="col-xl-3 col-md-6" key={i}>
           <div className="box bg-white gbox ">
             <div className="d-flex align-items-center title-box ">
               <p className=" mb-0 me-2">{res?.title}</p>

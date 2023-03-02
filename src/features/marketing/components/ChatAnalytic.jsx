@@ -126,17 +126,17 @@ export default function ChatAnalytic() {
 
   return (
     <div className="row gy-4 mb-4 ">
-      <div className="col-lg-12">
+      <div className="col-xl-12">
         <ChatBoxes data={dataSalesBox} />
       </div>
 
-      <div className="col-lg-9">
+      <div className="col-xl-9">
         <CustomBarChartStacked
           dataSales={dataSales}
           handleFilter={handleFilter}
         />
       </div>
-      <div className="col-lg-3">
+      <div className="col-xl-3">
         <ChatPercentage />
       </div>
     </div>

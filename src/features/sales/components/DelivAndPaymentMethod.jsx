@@ -20,7 +20,7 @@ export default function DelivAndPaymentMethod() {
   return (
     <div className="delivandpay mb-4">
       <div className="row">
-        <div className="col-md-9">
+        <div className="col-xl-9">
           <div className="piebox w-100 mb-3">
             <CustomFilterHeader title="Delivery Method" noFilter />
             <PieChartSales dataSource={dataPie} />
@@ -30,7 +30,7 @@ export default function DelivAndPaymentMethod() {
             <PieChartSales dataSource={dataPie2} />
           </div>
         </div>
-        <div className="col-md-3">
+        <div className="col-xl-3">
           <CustomFilterHeader title="" noFilter />
           <OutletSection title="TOP ITEM" customHeight={["625px", "540px"]} />
         </div>

@@ -208,7 +208,9 @@
 
 
 .tablecustom{
-    overflow-x: auto;
+    .tablewrap{
+        overflow-x: auto;
+    }
     .title{
         font-size: 20px;
         font-weight: bold;
@@ -222,6 +224,21 @@
         tr{
             th{
                 text-transform: uppercase;
+            }
+        }
+    }
+
+    @include media-breakpoint-down(lg) { 
+        table{
+            tr{
+                th{
+                    text-transform: uppercase;
+                    font-size: 10px !important;
+                    white-space: nowrap;
+                }
+            }
+            td{
+                font-size: 10px;
             }
         }
     }

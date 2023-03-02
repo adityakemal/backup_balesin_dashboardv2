@@ -167,7 +167,7 @@ export default function TableMarketing({ title, detailComp }) {
       <div className="tablecustom">
         <p className="title mb-0">{title}</p>
         <p className="date mb-0">12:15 PM at 16th January 2023</p>
-        <div className="mt-4">
+        <div className="mt-4 tablewrap">
           <Table dataSource={dataSource} columns={columns} />
         </div>
       </div>

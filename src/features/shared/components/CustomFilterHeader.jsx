@@ -82,9 +82,9 @@ export default function CustomFilterHeader({ title, noFilter }) {
             )}
           </div>
         </div>
-        <div className="col-xl-4 col-6 offset-6 offset-xl-0 mb-3 mb-xl-0">
-          {/* <div className="col-xl-4 mb-3 mb-xl-0"> */}
-          {!noFilter && (
+        {/* <div className="col-xl-4 mb-3 mb-xl-0"> */}
+        {!noFilter && (
+          <div className="col-xl-4 col-6 offset-6 offset-xl-0 mb-3 mb-xl-0">
             <div className="row">
               <div className="col-6">
                 <Button
@@ -109,8 +109,8 @@ export default function CustomFilterHeader({ title, noFilter }) {
                 </Button>
               </div>
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );

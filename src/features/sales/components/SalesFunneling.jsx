@@ -138,7 +138,7 @@ export default function SalesFunneling({ title }) {
             </div>
 
             <div className="row">
-              <div className="col-md-4  border-end">
+              <div className="col-4  border-end">
                 <div className="py-3 border-bottom">
                   <p className="title mb-0">Mira Iskarnita</p>
                   <span>08126262625</span>
@@ -225,7 +225,7 @@ export default function SalesFunneling({ title }) {
               </div>
 
               {/* ///////////// */}
-              <div className="col-md-8 py-3 bg-light">
+              <div className="col-8 py-3 bg-light">
                 <div className="box-chat ">
                   {dataChat.map((res, i) =>
                     res.id === "admin" ? (
@@ -305,7 +305,9 @@ export default function SalesFunneling({ title }) {
         </div>
         {/* <div className="date">12:15 PM at 16th January 2023</div> */}
         <div className="tablecustom">
-          <Table dataSource={dataSource} columns={columns} />
+          <div className="tablewrap">
+            <Table dataSource={dataSource} columns={columns} />
+          </div>
         </div>
       </div>
     </section>

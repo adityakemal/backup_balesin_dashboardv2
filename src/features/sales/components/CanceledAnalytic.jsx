@@ -121,10 +121,10 @@ export default function CanceledAnalytic() {
 
   return (
     <div className="row gy-4 mb-4 ">
-      <div className="col-lg-9">
+      <div className="col-xl-9">
         <div className="row boxes-section">
           <CanceledBoxes />
-          <div className="col-lg-12">
+          <div className="col-xl-12">
             <CustomBarChartStacked
               dataSales={dataSales}
               handleFilter={handleFilter}
@@ -132,7 +132,7 @@ export default function CanceledAnalytic() {
           </div>
         </div>
       </div>
-      <div className="col-lg-3">
+      <div className="col-xl-3">
         <OutletSection title="OUTLET SALES" />
       </div>
     </div>

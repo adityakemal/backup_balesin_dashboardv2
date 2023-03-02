@@ -9,23 +9,31 @@ export default function LayoutApp({ children, hideSidebar }) {
   const { loading: loadingDashboard } = useSelector((state) => state.dashboard);
   const { loadingOutletList } = useSelector((state) => state.shared);
   return (
-    <div className="layoutapp">
-      {(loadingDashboard || loadingOutletList) && <LoadingScreen />}
+    <>
+      <div className="disable_mobile_screen d-flex d-sm-none">
+        <div className="text-center">
+          <h2>📵 </h2>
+          <p>Mobile screen not allowed!!</p>
+        </div>
+      </div>
+      <div className="layoutapp">
+        {(loadingDashboard || loadingOutletList) && <LoadingScreen />}
 
-      {/* <Navbar /> */}
-      {hideSidebar ? (
-        <AnimateWrapper>{children}</AnimateWrapper>
-      ) : (
-        <div className="d-flex py-0 px-0">
-          <SideBar />
-          <div className="wrapcon">
-            <Navbar />
-            <div className="px-4 container-lg pb-5 pt-4">
-              <AnimateWrapper>{children}</AnimateWrapper>
+        {/* <Navbar /> */}
+        {hideSidebar ? (
+          <AnimateWrapper>{children}</AnimateWrapper>
+        ) : (
+          <div className="d-flex py-0 px-0">
+            <SideBar />
+            <div className="wrapcon">
+              <Navbar />
+              <div className="px-4 container-lg pb-5 pt-4">
+                <AnimateWrapper>{children}</AnimateWrapper>
+              </div>
             </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </>
   );
 }
