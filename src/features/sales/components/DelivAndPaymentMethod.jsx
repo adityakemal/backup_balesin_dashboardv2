@@ -21,7 +21,7 @@ export default function DelivAndPaymentMethod() {
     <div className="delivandpay mb-4">
       <div className="row">
         <div className="col-xl-9">
-          <div className="piebox w-100 mb-3">
+          <div className="piebox w-100 mb-4">
             <CustomFilterHeader title="Delivery Method" noFilter />
             <PieChartSales dataSource={dataPie} />
           </div>

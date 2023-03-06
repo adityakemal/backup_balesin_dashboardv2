@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { postOverView } from "./dashboard.api";
+import { postOutlets, postOverView } from "./dashboard.api";
 
 
 
@@ -8,9 +8,9 @@ const dashboardSlice = createSlice({
     initialState: {
         loading: false,
         error: {},
-        listOutletSales: [],
         overViewData: {},
-        transactionActivity : []
+        transactionActivity: [],
+        // outletWithValue : []
         // isRegister: false
     },
     reducers: {
@@ -26,11 +26,24 @@ const dashboardSlice = createSlice({
             state.loading = false
             // console.log(payload, 'payload data dashboard')
             state.overViewData = payload
-            state.listOutletSales = payload.list_outlet_sales
             state.transactionActivity = payload.transaction_activity
             
         },
         [postOverView.rejected]: (state, action) => {
+            state.loading = false
+        },
+
+        [postOutlets.pending]: (state, action) => {
+            state.loading = true
+        },
+        [postOutlets.fulfilled]: (state, { payload }) => {
+            state.loading = false
+            // console.log(payload.outlets_potential_sales, 'payload data outlets')
+            // state.outletWithValue = payload.outlets_potential_sales
+
+            
+        },
+        [postOutlets.rejected]: (state, action) => {
             state.loading = false
         },
     }

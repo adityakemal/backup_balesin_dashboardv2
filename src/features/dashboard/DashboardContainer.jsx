@@ -43,10 +43,10 @@ export default function DashboardContainer() {
       amountParseInt: parseInt(res.amount),
       date: dayjs(res.date).format("DD/MMM/YYYY"),
     }));
-    console.log(dataWithStringDate, "dataWithStringDate");
+    // console.log(dataWithStringDate, "dataWithStringDate");
 
     const makeKey = [...new Set(dataWithStringDate.map((res) => res.date))]; //remove duplicated key
-    console.log(makeKey, "make key");
+    // console.log(makeKey, "make key");
 
     const finalDataByKey = makeKey.map((keyDate) => {
       let filteredByDate = dataWithStringDate.filter(
@@ -84,7 +84,7 @@ export default function DashboardContainer() {
 
     setChartData(finalDataByKey);
 
-    console.log(finalDataByKey, "data by key");
+    // console.log(finalDataByKey, "data by key");
   }, [transactionActivity]);
 
   const [chartData, setChartData] = useState([]);
