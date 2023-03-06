@@ -11,7 +11,7 @@ import CustomBarChartStacked from "../shared/components/CustomBarChartStacked";
 import TableDashboard from "./components/TableDashboard";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { postOverView } from "./dashboard.api";
+import { postCustomerOverview, postOverView } from "./dashboard.api";
 import { useParams } from "react-router-dom";
 import dayjs from "dayjs";
 import BarChartDashboard from "./components/BarChartDashboard";
@@ -36,6 +36,19 @@ export default function DashboardContainer() {
     };
     dispatch(postOverView(data));
   }, [outlet_id, dateRangeFilter]);
+
+  useEffect(() => {
+    const rangeFilterToString = [
+      dayjs(dateRangeFilter[0]).format("YYYY-MM-DD"),
+      dayjs(dateRangeFilter[1]).format("YYYY-MM-DD"),
+    ].toString();
+    const data = {
+      bot_id: localStorage.getItem("bot_id"),
+      store_id: localStorage.getItem("store_id"),
+      daterange: rangeFilterToString,
+    };
+    dispatch(postCustomerOverview(data));
+  }, [dateRangeFilter]);
 
   useEffect(() => {
     const dataWithStringDate = transactionActivity.map((res) => ({
