@@ -7,6 +7,7 @@ const dashboardSlice = createSlice({
     name: 'dashboard',
     initialState: {
         loading: false,
+        customerLoading: false,
         error: {},
         overViewData: {},
         transactionActivity: [],
@@ -36,16 +37,16 @@ const dashboardSlice = createSlice({
 
         //customer overview
         [postCustomerOverview.pending]: (state, action) => {
-            state.loading = true
+            state.customerLoading = true
         },
         [postCustomerOverview.fulfilled]: (state, { payload }) => {
-            state.loading = false
+            state.customerLoading = false
             console.log(payload, 'payload data dashboard')
 
             state.customerOverViewData = payload
         },
         [postCustomerOverview.rejected]: (state, action) => {
-            state.loading = false
+            state.customerLoading = false
         },
         //outlets with value
         [postOutlets.pending]: (state, action) => {

@@ -6,7 +6,9 @@ import { useSelector } from "react-redux";
 import LoadingScreen from "./LoadingScreen";
 
 export default function LayoutApp({ children, hideSidebar }) {
-  const { loading: loadingDashboard } = useSelector((state) => state.dashboard);
+  const { loading: loadingDashboard, customerLoading } = useSelector(
+    (state) => state.dashboard
+  );
   const { loadingOutletList } = useSelector((state) => state.shared);
   return (
     <>
@@ -17,7 +19,9 @@ export default function LayoutApp({ children, hideSidebar }) {
         </div>
       </div>
       <div className="layoutapp">
-        {(loadingDashboard || loadingOutletList) && <LoadingScreen />}
+        {(loadingDashboard || loadingOutletList || customerLoading) && (
+          <LoadingScreen />
+        )}
 
         {/* <Navbar /> */}
         {hideSidebar ? (

@@ -6,7 +6,6 @@ export default function LoadingScreen() {
     <div className="loading_screen">
       <div>
         <PropagateLoader color="#fd0" size="20" />
-        <p>Loading...</p>
       </div>
     </div>
   );
