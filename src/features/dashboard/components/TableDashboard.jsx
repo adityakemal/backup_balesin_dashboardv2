@@ -52,9 +52,9 @@ export default function TableDashboard({ title, detailComp }) {
       dataIndex: "status",
       key: "status",
       render: (v) =>
-        v === 0 ? (
+        v === "delivered" ? (
           <b style={{ color: "green" }}>Delivered</b>
-        ) : v === 2 ? (
+        ) : v === "canceled" ? (
           <b style={{ color: "red" }}>Canceled</b>
         ) : (
           <b style={{ color: "#f7dc13" }}>Expired</b>
