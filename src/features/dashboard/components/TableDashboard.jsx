@@ -44,8 +44,8 @@ export default function TableDashboard({ title, detailComp }) {
     },
     {
       title: "outlet",
-      dataIndex: "outlet_id",
-      key: "outlet_id",
+      dataIndex: "outlet",
+      key: "outlet",
     },
     {
       title: "status",
