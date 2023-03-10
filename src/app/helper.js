@@ -10,7 +10,7 @@ export const PublicRoute = ({ children }) => {
     const store_id = localStorage.getItem('store_id')
 
 
-    if (auth && bot_id && store_id) return <Navigate to="/dashboard/" />
+    if (auth && bot_id && store_id) return <Navigate to="/dashboard" />
     return children;
 }
 

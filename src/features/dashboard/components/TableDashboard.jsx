@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import { rupiahFormat } from "../../../app/helper";
 import { useSelector } from "react-redux";
 
-export default function TableDashboard({ title, detailComp }) {
+export default function TableDashboard({ title, dateTitle }) {
   const { loading, topTransaction } = useSelector((state) => state.dashboard);
   // {
   //   "outlet_id": 98,
@@ -166,7 +166,10 @@ export default function TableDashboard({ title, detailComp }) {
       {/* //////////////  */}
       <div className="tablecustom">
         <p className="title mb-0">{title}</p>
-        <p className="date mb-0">12:15 PM at 16th January 2023</p>
+        <p className="date mb-0">
+          {dayjs(dateTitle[0]).format("DD MMMM YYYY")} to{" "}
+          {dayjs(dateTitle[1]).format("DD MMMM YYYY")}
+        </p>
         <div className="mt-4 tablewrap">
           <Table
             dataSource={dataSource}
