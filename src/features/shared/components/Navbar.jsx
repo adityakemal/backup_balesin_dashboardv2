@@ -75,7 +75,8 @@ export default function Navbar() {
   // }, []);
 
   const handleOutlet = ({ key }) => {
-    const newId = dataOutlet.find((res) => res.key == key).value;
+    const newId = dataOutlet.find((res) => res.key == key).key;
+    console.log(newId, "handleOutletId");
     dispatch(handleOutletId(newId));
     // navigate(`/${menuLocation}/${data.value}`);
   };

@@ -21,19 +21,18 @@ export default function SideBar() {
       name: "Dashboard",
       path: `/dashboard`,
       icon: <AppstoreOutlined className="icon" />,
-      disabled: false,
     },
     {
       name: "Sales",
       path: `/sales`,
       icon: <WalletOutlined className="icon" />,
-      // disabled: false,
+      disabled: true,
     },
     {
       name: "Marketing",
       path: `/marketing`,
       icon: <LineChartOutlined className="icon" />,
-      // disabled: false,
+      disabled: true,
     },
   ];
 

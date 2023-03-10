@@ -18,6 +18,8 @@ const sharedSclice = createSlice({
     },
     reducers: {
         handleOutletId: (state, { payload }) => {
+            console.log(payload, 'in reducers')
+
             state.outletId = payload 
         },
         handleActiveuOtlet: (state, { payload }) => {

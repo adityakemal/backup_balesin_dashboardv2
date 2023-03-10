@@ -7,7 +7,6 @@ import DashboardBoxes from "./components/DashboardBoxes";
 import OutletSales from "./components/OutletSales";
 import CustomerBoxes from "./components/CustomerBoxes";
 
-import CustomBarChartStacked from "../shared/components/CustomBarChartStacked";
 import TableDashboard from "./components/TableDashboard";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
