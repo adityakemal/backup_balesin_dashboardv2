@@ -138,7 +138,10 @@ export default function DashboardContainer() {
         </div>
         <CustomFilterHeader title="Customer Overview" noFilter />
         <CustomerBoxes />
-        <TableDashboard title="Top Transaction" dateTitle={dateRangeFilter} />
+        <TableDashboard
+          title="Top Success Transaction"
+          dateTitle={dateRangeFilter}
+        />
       </div>
     </LayoutApp>
   );

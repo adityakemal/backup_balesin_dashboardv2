@@ -2,16 +2,22 @@ import React, { useState } from "react";
 import { Button, Table, Tag, Modal } from "antd";
 import dayjs from "dayjs";
 import { rupiahFormat } from "../../../app/helper";
+import { useSelector } from "react-redux";
 
 export default function TableDashboard({ title, detailComp }) {
-  const dataSource = [0, 1, 1, 1, 2, 0].map((res, i) => ({
-    order_id: i + 1,
-    customer_name: "kemal",
-    date: new Date(),
-    amount: 12232223,
-    outlet: "Pjaten Village",
-    status: res,
-  }));
+  const { loading, topTransaction } = useSelector((state) => state.dashboard);
+  // {
+  //   "outlet_id": 98,
+  //   "outlet": "Sedjuk Bakmi & Kopi SCBD",
+  //   "order_id": "sedj-SO-20230201-e90b2e-9668",
+  //   "customer_name": "santii",
+  //   "date": "2023-02-01 08:50:26",
+  //   "amount": 1556450,
+  //   "shipping_method": "Grab Express Instant",
+  //   "payment_method": "ovo",
+  //   "status": "expired"
+  // },
+  const dataSource = topTransaction;
 
   const columns = [
     {
@@ -38,8 +44,8 @@ export default function TableDashboard({ title, detailComp }) {
     },
     {
       title: "outlet",
-      dataIndex: "outlet",
-      key: "outlet",
+      dataIndex: "outlet_id",
+      key: "outlet_id",
     },
     {
       title: "status",
@@ -162,7 +168,12 @@ export default function TableDashboard({ title, detailComp }) {
         <p className="title mb-0">{title}</p>
         <p className="date mb-0">12:15 PM at 16th January 2023</p>
         <div className="mt-4 tablewrap">
-          <Table dataSource={dataSource} columns={columns} pagination={false} />
+          <Table
+            dataSource={dataSource}
+            loading={loading}
+            columns={columns}
+            pagination={false}
+          />
         </div>
       </div>
     </div>

@@ -11,6 +11,7 @@ const dashboardSlice = createSlice({
         error: {},
         overViewData: {},
         transactionActivity: [],
+        topTransaction: [],
         customerOverViewData: {},
         // outletWithValue : []
         // isRegister: false
@@ -29,6 +30,8 @@ const dashboardSlice = createSlice({
             // console.log(payload, 'payload data dashboard')
             state.overViewData = payload
             state.transactionActivity = payload.transaction_activity
+            state.topTransaction = payload.top_transaction
+            
             
         },
         [postOverView.rejected]: (state, action) => {
