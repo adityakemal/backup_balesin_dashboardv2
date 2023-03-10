@@ -151,7 +151,7 @@ export default function Login() {
         await localStorage.setItem("auth", true);
         await localStorage.setItem("bot_id", res.bot_id);
         await localStorage.setItem("store_id", res.store_id);
-        await navigate("/dashboard/-1");
+        await navigate("/dashboard");
       })
       .catch((err) => {
         console.log(err);

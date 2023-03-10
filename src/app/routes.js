@@ -21,13 +21,6 @@ export default [
         isPrivate: true
     },
     {
-        name: 'Dashboard',
-        isSidebarLink: true,
-        path: '/dashboard/:outlet_id',
-        element: <DashboardContainer />,
-        isPrivate: true
-    },
-    {
         name: 'Sales',
         isSidebarLink: true,
         path: '/sales',
@@ -35,23 +28,9 @@ export default [
         isPrivate: true
     },
     {
-        name: 'Sales',
-        isSidebarLink: true,
-        path: '/sales/:outlet_id',
-        element: <SalesContainer />,
-        isPrivate: true
-    },
-    {
         name: 'Marketing',
         isSidebarLink: true,
         path: '/marketing',
-        element: <MarketingContainer />,
-        isPrivate: true
-    },
-    {
-        name: 'Marketing',
-        isSidebarLink: true,
-        path: '/marketing/:outlet_id',
         element: <MarketingContainer />,
         isPrivate: true
     },

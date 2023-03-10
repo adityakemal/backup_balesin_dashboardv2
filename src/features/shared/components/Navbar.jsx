@@ -12,17 +12,17 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { IoChevronDown, IoLogOut } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { postStoreInfo } from "../shared.api";
-import { handleActiveuOtlet } from "../shared.reducer";
+import { handleActiveuOtlet, handleOutletId } from "../shared.reducer";
 
 // import logo from "../../../images/balesinLogo.png";
 
 export default function Navbar() {
-  let location = useLocation();
-  let navigate = useNavigate();
-  const { outlet_id } = useParams();
+  // let location = useLocation();
+  // let navigate = useNavigate();
+  // const { outlet_id } = useParams();
 
   const dispatch = useDispatch();
-  const { outletList, outletActive, mainStoreInfo } = useSelector(
+  const { outletList, outletActive, mainStoreInfo, outletId } = useSelector(
     (state) => state.shared
   );
   useEffect(() => {
@@ -75,9 +75,9 @@ export default function Navbar() {
   // }, []);
 
   const handleOutlet = ({ key }) => {
-    const data = dataOutlet.find((res) => res.key == key);
-    const menuLocation = location.pathname.split("/")[1];
-    navigate(`/${menuLocation}/${data.value}`);
+    const newId = dataOutlet.find((res) => res.key == key).value;
+    dispatch(handleOutletId(newId));
+    // navigate(`/${menuLocation}/${data.value}`);
   };
 
   const [isShown, setIsShown] = useState(false);
@@ -107,8 +107,8 @@ export default function Navbar() {
               onMouseLeave={() => setIsShown(false)}>
               <ShopOutlined className="mx-3" />
               <div className="" style={{ minWidth: 170 }}>
-                {outlet_id
-                  ? dataOutlet.find((res) => res.value == outlet_id)?.label
+                {outletId
+                  ? dataOutlet.find((res) => res.value == outletId)?.label
                   : "All Outlet"}
               </div>
               <IoChevronDown

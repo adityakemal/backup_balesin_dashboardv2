@@ -14,24 +14,24 @@ import { Link, NavLink, useParams } from "react-router-dom";
 import logo from "../../../images/balesinLogo.png";
 
 export default function SideBar() {
-  const { outlet_id } = useParams();
+  // const { outlet_id } = useParams();
 
   const data = [
     {
       name: "Dashboard",
-      path: `/dashboard/${outlet_id || ""}`,
+      path: `/dashboard`,
       icon: <AppstoreOutlined className="icon" />,
       disabled: false,
     },
     {
       name: "Sales",
-      path: `/sales/${outlet_id || ""}`,
+      path: `/sales`,
       icon: <WalletOutlined className="icon" />,
       disabled: false,
     },
     {
       name: "Marketing",
-      path: `/marketing/${outlet_id || ""}`,
+      path: `/marketing`,
       icon: <LineChartOutlined className="icon" />,
       disabled: false,
     },

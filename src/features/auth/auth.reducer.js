@@ -8,11 +8,11 @@ const authSlice = createSlice({
     initialState: {
         loading: false,
         error: {},
-        // isRegister: false
+        // count: -1
     },
     reducers: {
-        // handleRegister: (state, action) => {
-        //     state.isRegister = !state.isRegister
+        // handleCount: (state, action) => {
+        //     state.count = state.count +1
         // },
     },
     extraReducers: {
@@ -29,6 +29,6 @@ const authSlice = createSlice({
 
 })
 
-// export const { handleRegister } = authSlice.actions
+// export const { handleCount } = authSlice.actions
 
 export default authSlice.reducer

@@ -12,15 +12,15 @@ import TableDashboard from "./components/TableDashboard";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { postCustomerOverview, postOverView } from "./dashboard.api";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import dayjs from "dayjs";
 import BarChartDashboard from "./components/BarChartDashboard";
 
 export default function DashboardContainer() {
-  const { outlet_id } = useParams();
+  // const { outlet_id } = useParams();
   const dispatch = useDispatch();
 
-  const { dateRangeFilter } = useSelector((state) => state.shared);
+  const { dateRangeFilter, outletId } = useSelector((state) => state.shared);
   const { transactionActivity } = useSelector((state) => state.dashboard);
 
   useEffect(() => {
@@ -30,12 +30,12 @@ export default function DashboardContainer() {
     ].toString();
     const data = {
       token: "",
-      outlet_id: outlet_id || -1,
+      outlet_id: outletId,
       store_id: localStorage.getItem("store_id"),
       daterange: rangeFilterToString,
     };
     dispatch(postOverView(data));
-  }, [outlet_id, dateRangeFilter]);
+  }, [outletId, dateRangeFilter]);
 
   useEffect(() => {
     const rangeFilterToString = [
@@ -102,8 +102,6 @@ export default function DashboardContainer() {
 
   const [chartData, setChartData] = useState([]);
 
-  const [FilterKey, setFilterKey] = useState([]);
-
   const handleFilter = (key) => {
     const filtered = chartData.map((res) => {
       const response = res;
@@ -118,6 +116,7 @@ export default function DashboardContainer() {
   return (
     <LayoutApp>
       <div className="dashboard">
+        {/* <h1>{outletId}</h1> */}
         <CustomFilterHeader title="Dashboard" />
         {/* <button onClick={() => handleFilter("data1")}>remove data1</button> */}
         <div className="row gy-4 mb-4">

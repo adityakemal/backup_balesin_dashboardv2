@@ -13,9 +13,13 @@ const sharedSclice = createSlice({
         dateRangeFilter : [
             dayjs().add(-7, "d"),
             dayjs(),
-          ]
+        ],
+        outletId : -1
     },
     reducers: {
+        handleOutletId: (state, { payload }) => {
+            state.outletId = payload 
+        },
         handleActiveuOtlet: (state, { payload }) => {
             console.log(payload, 'in reducers')
             state.outletActive = payload 
@@ -55,7 +59,7 @@ const sharedSclice = createSlice({
 
 })
 
-export const { handleActiveuOtlet, handleDateRange } = sharedSclice.actions
+export const { handleActiveuOtlet, handleDateRange, handleOutletId } = sharedSclice.actions
 
 
 export default sharedSclice.reducer
