@@ -22,16 +22,15 @@ export default function Navbar() {
   // const { outlet_id } = useParams();
 
   const dispatch = useDispatch();
-  const { outletList, outletActive, mainStoreInfo, outletId } = useSelector(
-    (state) => state.shared
-  );
+  const { outletList, outletActive, mainStoreInfo, outletId, isRefresh } =
+    useSelector((state) => state.shared);
   useEffect(() => {
     const data = {
       bot_id: localStorage.getItem("bot_id"),
       store_id: localStorage.getItem("store_id"),
     };
     dispatch(postStoreInfo(data));
-  }, []);
+  }, [isRefresh]);
 
   const handleLogout = () => {
     localStorage.clear();

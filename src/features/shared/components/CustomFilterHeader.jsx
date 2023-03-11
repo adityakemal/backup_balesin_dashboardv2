@@ -4,7 +4,7 @@ import { Button, DatePicker } from "antd";
 import { TbRefresh } from "react-icons/tb";
 import { DownloadOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
-import { handleDateRange } from "../shared.reducer";
+import { handleDateRange, handleRefresh } from "../shared.reducer";
 const { RangePicker } = DatePicker;
 
 export default function CustomFilterHeader({ title, noFilter }) {
@@ -57,6 +57,10 @@ export default function CustomFilterHeader({ title, noFilter }) {
     }
   };
 
+  const handleDataRefresh = () => {
+    dispatch(handleRefresh());
+  };
+
   return (
     <div className="filter-header mb-4">
       <div className="row">
@@ -90,6 +94,7 @@ export default function CustomFilterHeader({ title, noFilter }) {
                 <Button
                   className="w-100"
                   style={{ background: "#F7DC13" }}
+                  onClick={handleDataRefresh}
                   size="large">
                   <div className="d-flex align-items-center text-dark">
                     <TbRefresh className="me-2" />

@@ -19,10 +19,20 @@ export default function DashboardContainer() {
   // const { outlet_id } = useParams();
   const dispatch = useDispatch();
 
-  const { dateRangeFilter, outletId } = useSelector((state) => state.shared);
+  const { dateRangeFilter, outletId, isRefresh } = useSelector(
+    (state) => state.shared
+  );
   const { transactionActivity } = useSelector((state) => state.dashboard);
 
   useEffect(() => {
+    getDataPostOverview();
+  }, [outletId, dateRangeFilter, isRefresh]);
+
+  useEffect(() => {
+    getDataPostCustomerOverview();
+  }, [dateRangeFilter, isRefresh]);
+
+  const getDataPostOverview = () => {
     const rangeFilterToString = [
       dayjs(dateRangeFilter[0]).format("YYYY-MM-DD"),
       dayjs(dateRangeFilter[1]).format("YYYY-MM-DD"),
@@ -34,9 +44,9 @@ export default function DashboardContainer() {
       daterange: rangeFilterToString,
     };
     dispatch(postOverView(data));
-  }, [outletId, dateRangeFilter]);
+  };
 
-  useEffect(() => {
+  const getDataPostCustomerOverview = () => {
     const rangeFilterToString = [
       dayjs(dateRangeFilter[0]).format("YYYY-MM-DD"),
       dayjs(dateRangeFilter[1]).format("YYYY-MM-DD"),
@@ -47,7 +57,7 @@ export default function DashboardContainer() {
       daterange: rangeFilterToString,
     };
     dispatch(postCustomerOverview(data));
-  }, [dateRangeFilter]);
+  };
 
   useEffect(() => {
     const dataWithStringDate = transactionActivity.map((res) => ({

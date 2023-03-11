@@ -12,19 +12,37 @@ import axios from 'axios';
 import { notification } from 'antd';
 
 
-//HANDLE GLOBAL ERROR 
+//HANDLE GLOBAL ERROR token expired
+// axios.defaults.baseURL = `${process.env.REACT_APP_API_URL}`;
+// axios.interceptors.response.use((response) => response, (error) => {
+//   // whatever you want to do with the error
+//   console.log(error.response)
+//   if (error.response.status === 401) { //token expired
+//     notification.error({
+//       message: `Error ${error?.response?.status}`,
+//       description:
+//         'Silahkan login kembali!!',
+//     });
+//     localStorage.clear()
+//     window.location.href = '/expired'
+//   }
+//   throw error;
+// });
+
+//HANDLE GLOBAL ERROR token expired
 axios.defaults.baseURL = `${process.env.REACT_APP_API_URL}`;
 axios.interceptors.response.use((response) => response, (error) => {
   // whatever you want to do with the error
-  console.log(error.response)
-  if (error.response.status >= 400) {
+  console.log(error, 'here')
+  if (error) {
     notification.error({
-      message: `Error ${error?.response?.status}`,
+      message: `Error fetching data`,
       description:
-        'Silahkan login kembali!!',
+        '',
     });
-    localStorage.clear()
-    window.location.href = '/expired'
+    console.log('error fetch data!')
+    // localStorage.clear()
+    // window.location.href = '/expired'
   }
   throw error;
 });

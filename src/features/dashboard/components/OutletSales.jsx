@@ -7,8 +7,10 @@ import { postOutlets } from "../dashboard.api";
 
 export default function OutletSales() {
   const dispatch = useDispatch();
-  // const { loading } = useSelector((state) => state.dashboard);
-  const { outletList, dateRangeFilter } = useSelector((state) => state.shared);
+  // const {  } = useSelector((state) => state.dashboard);
+  const { outletList, dateRangeFilter, isRefresh } = useSelector(
+    (state) => state.shared
+  );
 
   const [mergeOutlet, setMergeOutlet] = useState([]);
 

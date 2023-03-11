@@ -14,9 +14,14 @@ const sharedSclice = createSlice({
             dayjs().add(-7, "d"),
             dayjs(),
         ],
-        outletId : -1
+        outletId: -1,
+        isRefresh : false
     },
     reducers: {
+        handleRefresh: (state, { payload }) => {
+
+            state.isRefresh = !state.isRefresh 
+        },
         handleOutletId: (state, { payload }) => {
             console.log(payload, 'in reducers')
 
@@ -61,7 +66,7 @@ const sharedSclice = createSlice({
 
 })
 
-export const { handleActiveuOtlet, handleDateRange, handleOutletId } = sharedSclice.actions
+export const { handleActiveuOtlet, handleDateRange, handleOutletId, handleRefresh } = sharedSclice.actions
 
 
 export default sharedSclice.reducer
