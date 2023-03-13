@@ -9,13 +9,14 @@ import { useEffect } from "react";
 
 export default function CustomerBoxes() {
   const { customerOverViewData } = useSelector((state) => state.dashboard);
-  const { length_reg, length_trx, length_cust } = customerOverViewData;
+  const { length_reg, length_trx, length_cust, conversion } =
+    customerOverViewData;
 
   const dataSalesBox = [
     {
       title: "TOTAL USER",
       type: "number",
-      info: "lorem ipsum dolor sit amet",
+      // info: "lorem ipsum dolor sit amet",
       content: length_cust,
       // footer_icon: "down",
       // footer: `<span color='red'>from last week</span>`,
@@ -23,7 +24,7 @@ export default function CustomerBoxes() {
     {
       title: "NUMBER OF REGISTRATION",
       type: "number",
-      info: "lorem ipsum dolor sit amet",
+      // info: "lorem ipsum dolor sit amet",
       content: length_reg,
       // footer_icon: "up",
       // footer: `<span color='red'>from last week</span>`,
@@ -31,7 +32,7 @@ export default function CustomerBoxes() {
     {
       title: "NUMBER OF ORDERS",
       type: "number",
-      info: "lorem ipsum dolor sit amet",
+      // info: "lorem ipsum dolor sit amet",
       content: length_trx,
       footer_icon: "",
       // footer: `<span color='red'>from last week</span>`,
@@ -39,8 +40,8 @@ export default function CustomerBoxes() {
     {
       title: "CONVERSION",
       type: "number",
-      info: "lorem ipsum dolor sit amet",
-      content: "0,28",
+      // info: "lorem ipsum dolor sit amet",
+      content: conversion,
       footer_icon: "",
       // footer: `<span color='red'>from last week</span>`,
     },
