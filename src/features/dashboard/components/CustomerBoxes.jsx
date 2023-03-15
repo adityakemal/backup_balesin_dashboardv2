@@ -34,7 +34,7 @@ export default function CustomerBoxes() {
       type: "number",
       // info: "lorem ipsum dolor sit amet",
       content: length_trx,
-      footer_icon: "",
+      // footer_icon: "",
       // footer: `<span color='red'>from last week</span>`,
     },
     {
@@ -42,7 +42,7 @@ export default function CustomerBoxes() {
       type: "string",
       // info: "lorem ipsum dolor sit amet",
       content: `${conversion}%`,
-      footer_icon: "",
+      // footer_icon: "",
       // footer: `<span color='red'>from last week</span>`,
     },
   ];
