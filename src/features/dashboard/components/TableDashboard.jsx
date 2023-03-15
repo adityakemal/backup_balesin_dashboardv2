@@ -75,9 +75,10 @@ export default function TableDashboard({ title, dateTitle }) {
   ];
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [dataModal, setDataModal] = useState(null);
+  const [dataModal, setDataModal] = useState({});
 
   const showModal = (data) => {
+    console.log(data, "detail modal");
     setDataModal(data);
     setIsModalOpen(true);
   };
@@ -112,47 +113,55 @@ export default function TableDashboard({ title, dateTitle }) {
             <div className="row row-cols-md-3 row-cols-sm-2 gx-0 border-bottom">
               <div className="col py-3">
                 <p className="title mb-0">ORDER DATE</p>
-                <span>01 Feb 2023</span>
+                <span>{dayjs(dataModal?.date).format("DD MMMM YYYY")}</span>
               </div>
               <div className="col py-3">
                 <p className="title mb-0">ORDER ID</p>
-                <span>#0202038383</span>
+                <span>{dataModal?.order_id}</span>
+              </div>
+              <div className="col py-3">
+                <p className="title mb-0">OUTLET</p>
+                <span>{dataModal?.outlet}</span>
               </div>
             </div>
 
             <div className="row row-cols-md-3 row-cols-sm-2 row-cols-1 gx-0">
               <div className="col py-3">
-                <p className="title mb-0">Name</p>
-                <span>Kemal Aditya </span>
+                <p className="title mb-0">Customer Name</p>
+                <span>{dataModal?.customer_name}</span>
               </div>
               <div className="col py-3">
                 <p className="title mb-0">Total</p>
-                <span>{rupiahFormat(234323)}</span>
+                <span>{rupiahFormat(dataModal?.amount)}</span>
               </div>
               <div className="col py-3">
                 <p className="title mb-0">Voucher</p>
-                <span>-</span>
+                <span>{dataModal?.voucher || "-"}</span>
               </div>
               <div className="col py-3">
                 <p className="title mb-0">Phone Number</p>
-                <span>08123242455 </span>
+                <span>{dataModal?.phone_number || "-"} </span>
               </div>
               <div className="col py-3">
                 <p className="title mb-0">Order List</p>
-                <ul className="p-0">
-                  <li>
-                    <p className="mb-0 litem">Paket Sedjuk 01</p>
-                    <span>{rupiahFormat(234323)}</span>
-                  </li>
-                  <li>
-                    <p className="mb-0 litem">Paket Sedjuk 02</p>
-                    <span>{rupiahFormat(234323)}</span>
-                  </li>
-                  <li>
-                    <p className="mb-0 litem">Minuman Es teh Manis dingin</p>
-                    <span>{rupiahFormat(234323)}</span>
-                  </li>
-                </ul>
+                {dataModal?.order_list ? (
+                  <ul className="p-0">
+                    <li>
+                      <p className="mb-0 litem">Paket Sedjuk 01</p>
+                      <span>{rupiahFormat(234323)}</span>
+                    </li>
+                    <li>
+                      <p className="mb-0 litem">Paket Sedjuk 02</p>
+                      <span>{rupiahFormat(234323)}</span>
+                    </li>
+                    <li>
+                      <p className="mb-0 litem">Minuman Es teh Manis dingin</p>
+                      <span>{rupiahFormat(234323)}</span>
+                    </li>
+                  </ul>
+                ) : (
+                  "-"
+                )}
               </div>
               {/* <div className="col py-3">
               <p className="title mb-0">Voucher</p>
