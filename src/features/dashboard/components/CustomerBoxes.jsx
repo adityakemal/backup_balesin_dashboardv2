@@ -39,9 +39,9 @@ export default function CustomerBoxes() {
     },
     {
       title: "CONVERSION",
-      type: "number",
+      type: "string",
       // info: "lorem ipsum dolor sit amet",
-      content: conversion,
+      content: `${conversion}%`,
       footer_icon: "",
       // footer: `<span color='red'>from last week</span>`,
     },
@@ -63,6 +63,10 @@ export default function CustomerBoxes() {
             )}
             {res.type === "number" && (
               <div className="content-box">{numberFormat(res?.content)}</div>
+            )}
+
+            {res.type === "string" && (
+              <div className="content-box">{res?.content}</div>
             )}
             {/* {res.type === "logo" && (
               <div className="content-box position-relative">
