@@ -16,4 +16,4 @@ RUN yarn install
 RUN yarn build
 
 EXPOSE 8010
-CMD [ "yarn", "start" ]
+CMD [ "yarn", "prod" ]
