@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.057e3320.css",
-    "main.js": "/static/js/main.c867f22b.js",
+    "main.js": "/static/js/main.0d8271a2.js",
     "static/media/ovo.png": "/static/media/ovo.9adcff9e2c7b173462c9.png",
     "static/media/dana.png": "/static/media/dana.f951546a7e3014cbd40f.png",
     "static/media/balesinLogo.png": "/static/media/balesinLogo.3ecfa54e5a7a79d00498.png",
@@ -9,10 +9,10 @@
     "index.html": "/index.html",
     "static/media/wave.svg": "/static/media/wave.6633ad48a53617cfd397f65617784a75.svg",
     "main.057e3320.css.map": "/static/css/main.057e3320.css.map",
-    "main.c867f22b.js.map": "/static/js/main.c867f22b.js.map"
+    "main.0d8271a2.js.map": "/static/js/main.0d8271a2.js.map"
   },
   "entrypoints": [
     "static/css/main.057e3320.css",
-    "static/js/main.c867f22b.js"
+    "static/js/main.0d8271a2.js"
   ]
 }
