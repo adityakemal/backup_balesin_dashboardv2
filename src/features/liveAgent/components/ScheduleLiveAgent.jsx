@@ -38,7 +38,7 @@ export default function ScheduleLiveAgent() {
     console.log(time);
   };
 
-  const [selectedItems, setSelectedItems] = useState(["manusia", "binatang"]);
+  const [selectedItems, setSelectedItems] = useState(["CS", "Live Agent"]);
 
   const handleRemoveKeyword = (e, val) => {
     e.preventDefault();
@@ -148,7 +148,7 @@ export default function ScheduleLiveAgent() {
         <div className="gbox bg-light mb-4">
           <p className="step">step 2</p>
           <p className="title-box">Set Live Agent response </p>
-          <p className="label">Keyword</p>
+          <p className="label">Keywords</p>
           <div className="gbox p-3 bg-white d-flex flex-wrap align-items-center mb-3">
             {selectedItems.map((res, i) => (
               <Tag
@@ -184,7 +184,13 @@ export default function ScheduleLiveAgent() {
                     {res.title}
                   </p>
                 </div>
-                <TextArea autoSize rows={4} style={{ minHeight: 80 }} />
+
+                <TextArea
+                  autoSize
+                  rows={4}
+                  placeholder="Text here.."
+                  style={{ minHeight: 80 }}
+                />
               </div>
             ))}
           </div>
@@ -193,6 +199,10 @@ export default function ScheduleLiveAgent() {
         </div>
 
         {/* //step 3  */}
+        <div className="gbox bg-light mb-4">
+          <p className="step">step 3</p>
+          <p className="title-box">Create Department & Role </p>
+        </div>
       </div>
     </div>
   );
