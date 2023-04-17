@@ -23,13 +23,13 @@ export default function SideBar() {
       name: "Sales",
       path: `/sales`,
       icon: <WalletOutlined className="icon" />,
-      disabled: true,
+      disabled: false,
     },
     {
       name: "Marketing",
       path: `/marketing`,
       icon: <LineChartOutlined className="icon" />,
-      disabled: true,
+      disabled: false,
     },
     {
       name: "Live Agent",

@@ -1,3 +1,10 @@
+import {
+  DeleteColumnOutlined,
+  DeleteFilled,
+  DeleteOutlined,
+  EditFilled,
+  EditOutlined,
+} from "@ant-design/icons";
 import { Button, Table, Tag } from "antd";
 import React from "react";
 
@@ -43,12 +50,29 @@ export default function ListAgent() {
       dataIndex: "option",
       key: "option",
       render: (_, res) => (
-        <Button
-          style={{ background: "#F7DC13" }}
-          // onClick={() => showModal(res)}
-        >
-          Detail
-        </Button>
+        <div className="d-flex align-items-center">
+          <Button
+            type="primary"
+            // size="small"
+            className=" mx-1"
+            // onClick={() => showModal(res)}
+          >
+            <div className="d-flex align-items-center">
+              <EditFilled className="me-1" /> Edit
+            </div>
+          </Button>
+          <Button
+            //   type="danger"
+            danger
+            // size="small"
+            className="mx-1"
+            // onClick={() => showModal(res)}
+          >
+            <div className="d-flex align-items-center">
+              <DeleteFilled className="me-1" /> Delete
+            </div>
+          </Button>
+        </div>
       ),
     },
   ];
