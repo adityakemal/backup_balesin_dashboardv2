@@ -1,6 +1,16 @@
-import { PlusCircleFilled, PlusCircleOutlined } from "@ant-design/icons";
-import { Button, Input, Select, Tag, TimePicker } from "antd";
 import React, { useState } from "react";
+
+import { PlusCircleFilled, PlusCircleOutlined } from "@ant-design/icons";
+import { Button, Input, Tag, TimePicker } from "antd";
+import {
+  GiSandsOfTime,
+  GiCheckMark,
+  GiCancel,
+  GiBoltDrop,
+  GiAlarmClock,
+  GiExitDoor,
+} from "react-icons/gi";
+import TextArea from "antd/es/input/TextArea";
 
 export default function ScheduleLiveAgent() {
   let dayNames = [
@@ -46,6 +56,44 @@ export default function ScheduleLiveAgent() {
     setSelectedItems((prev) => [...prev, keywordText]);
     setKeywordText("");
   };
+
+  const [responseObj, setResponseObj] = useState([
+    {
+      id: 1,
+      className: "text-blue",
+      title: "waiting response",
+      icon: <GiSandsOfTime />,
+      desc: "sdfasfa",
+    },
+    {
+      id: 2,
+      className: "text-success",
+      title: "success response",
+      icon: <GiCheckMark />,
+      desc: "sdfasfa",
+    },
+    {
+      id: 3,
+      className: "text-danger",
+      title: "cancel response",
+      icon: <GiCancel />,
+      desc: "sdfasfa",
+    },
+    {
+      id: 4,
+      className: "text-warning",
+      title: "inactive agent response",
+      icon: <GiExitDoor />,
+      desc: "sdfasfa",
+    },
+    {
+      id: 5,
+      className: "text-orange",
+      title: "out of working hours response",
+      icon: <GiAlarmClock />,
+      desc: "sdfasfa",
+    },
+  ]);
 
   return (
     <div className="schedule">
@@ -101,7 +149,7 @@ export default function ScheduleLiveAgent() {
           <p className="step">step 2</p>
           <p className="title-box">Set Live Agent response </p>
           <p className="label">Keyword</p>
-          <div className="gbox p-3 bg-white d-flex flex-wrap align-items-center">
+          <div className="gbox p-3 bg-white d-flex flex-wrap align-items-center mb-3">
             {selectedItems.map((res, i) => (
               <Tag
                 key={i}
@@ -125,6 +173,20 @@ export default function ScheduleLiveAgent() {
                 prefix={<PlusCircleOutlined />}
               />
             </form>
+          </div>
+          <div className="row g-4">
+            {responseObj.map((res, i) => (
+              <div className="col-md-6" key={i}>
+                <div
+                  className={`d-flex align-items-center mb-1 ${res.className}`}>
+                  {res.icon}
+                  <p className={`title-box mb-0 ms-1 ${res.className}`}>
+                    {res.title}
+                  </p>
+                </div>
+                <TextArea autoSize rows={4} style={{ minHeight: 80 }} />
+              </div>
+            ))}
           </div>
 
           {/* <pre>{JSON.stringify(ActiveDays)}</pre> */}
