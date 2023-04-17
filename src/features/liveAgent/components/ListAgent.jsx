@@ -9,7 +9,7 @@ import { Button, Table, Tag } from "antd";
 import React from "react";
 
 export default function ListAgent() {
-  const dataSource = [0, 1, 1, 1, 2, 0, 1, 2, 2, 0].map((res, i) => ({
+  const dataSource = [0, 1, 1, 1, 2].map((res, i) => ({
     agent_name: "wakwaw",
     email: "wakwaw@gmail.com",
     department: "CS",
@@ -79,10 +79,19 @@ export default function ListAgent() {
   return (
     <div className="list-agent">
       <div className="gbox bg-white">
-        <p className="title">List Agent</p>
+        <div className="d-flex justify-content-between align-items-center">
+          <p className="title">List Agent</p>
+          <Button type="primary" className="bg-warning text-dark">
+            + Add New Agent
+          </Button>
+        </div>
         <div className="tablecustom">
           <div className="mt-4 tablewrap">
-            <Table dataSource={dataSource} columns={columns} />
+            <Table
+              dataSource={dataSource}
+              columns={columns}
+              pagination={false}
+            />
           </div>
         </div>
       </div>

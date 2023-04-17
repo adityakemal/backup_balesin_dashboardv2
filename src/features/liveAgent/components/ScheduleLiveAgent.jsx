@@ -1,3 +1,4 @@
+import { Button } from "antd";
 import React, { useState } from "react";
 
 import AgentStep1 from "./AgentStep1";
@@ -17,6 +18,16 @@ export default function ScheduleLiveAgent() {
 
         {/* //step 3  */}
         <AgentStep3 />
+
+        <div className="w-100 d-flex justify-content-center mb-2">
+          <Button
+            type="primary"
+            shape="round"
+            size="large"
+            className="text-dark bg-warning px-5">
+            SAVE
+          </Button>
+        </div>
       </div>
     </div>
   );
