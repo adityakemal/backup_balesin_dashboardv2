@@ -1,10 +1,7 @@
 import {
   AppstoreOutlined,
-  BarChartOutlined,
+  CustomerServiceOutlined,
   LineChartOutlined,
-  LogoutOutlined,
-  MessageOutlined,
-  RobotOutlined,
   WalletOutlined,
 } from "@ant-design/icons";
 import { Tooltip } from "antd";
@@ -33,6 +30,12 @@ export default function SideBar() {
       path: `/marketing`,
       icon: <LineChartOutlined className="icon" />,
       disabled: true,
+    },
+    {
+      name: "Live Agent",
+      path: `/live-agent`,
+      icon: <CustomerServiceOutlined className="icon" />,
+      disabled: false,
     },
   ];
 

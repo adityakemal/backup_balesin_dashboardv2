@@ -19,6 +19,10 @@ p{
     font-size: 14px;
 }
 
+small{
+    font-size: 10px;
+}
+
 
 
 //colors
@@ -28,7 +32,38 @@ $smoke: #E8E8E8;
 $blue : #0090FF;
 $green: #1AD598;
 $red: #FF0000;
+$gray: #8B8B8B;
 
+
+.title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.title-box {
+    color: #8B8B8B;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+.step {
+    color: $yellow;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.label{
+    color: $gray;
+    font-size: 12px;
+    margin-bottom: 3px;
+}
+
+
+
+
+.ant-switch-checked {
+    background-color:$green !important;
+ }
 
 .text-blue{
     color: $blue;
@@ -149,4 +184,5 @@ $red: #FF0000;
 @import './styles/dashboard.scss';
 @import './styles/sales.scss';
 @import './styles/marketing.scss';
+@import './styles/live-agent.scss';
 @import './styles/shared.scss';
