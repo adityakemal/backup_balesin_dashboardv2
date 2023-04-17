@@ -99,20 +99,40 @@ export default function ScheduleLiveAgent() {
   const [departmentRoleData, setDepartmentRoleData] = useState([
     {
       label: "new Department",
-      key: "01",
+      key: nanoid(),
       issues: [],
       roles: [],
     },
   ]);
 
   const handleChangeTab = (e) => {
-    const findObj = departmentRoleData.find((f) => f.key === e.target.name);
+    const findObj = departmentRoleData.find((f) => f.key === e.target.id);
 
     const objUnChoosed = departmentRoleData.filter(
-      (f) => f.key !== e.target.name
+      (f) => f.key !== e.target.id
     );
     const merge = [...objUnChoosed, { ...findObj, label: e.target.value }];
     setDepartmentRoleData(merge);
+  };
+
+  const handleCheckRoles = (e, roles) => {
+    const findObj = departmentRoleData.find((f) => f.key === e.target.id);
+
+    const objUnChoosed = departmentRoleData.filter(
+      (f) => f.key !== e.target.id
+    );
+
+    if (e.target.checked) {
+      const merge = [
+        ...objUnChoosed,
+        { ...findObj, roles: [...roles, e.target.name] },
+      ];
+      setDepartmentRoleData(merge);
+    } else {
+      const filtered = roles.filter((r) => r !== e.target.name);
+      const merge = [...objUnChoosed, { ...findObj, roles: filtered }];
+      setDepartmentRoleData(merge);
+    }
   };
 
   const departmentForm = ({ label, key, issues, roles }) => (
@@ -129,23 +149,22 @@ export default function ScheduleLiveAgent() {
       <div className="row g-3">
         <div className="col-md-6">
           <p className="label">Name</p>
-          <Input value={label} name={key} onChange={handleChangeTab} />
+          <Input value={label} id={key} onChange={handleChangeTab} />
         </div>
         <div className="col-md-6">
           <p className="label">Roles</p>
           <Checkbox
+            id={key}
+            checked={roles.includes("agent")}
             name="agent"
-            onChange={(v) => {
-              console.log(v);
-            }}>
+            onChange={(e) => handleCheckRoles(e, roles)}>
             Agent
           </Checkbox>
           <Checkbox
-            size="large"
+            id={key}
             name="supervisor"
-            onChange={(v) => {
-              console.log(v.target.name);
-            }}>
+            checked={roles.includes("supervisor")}
+            onChange={(e) => handleCheckRoles(e, roles)}>
             Supervisor
           </Checkbox>
         </div>
