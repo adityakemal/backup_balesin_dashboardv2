@@ -6,7 +6,9 @@ import {
   EditOutlined,
 } from "@ant-design/icons";
 import { Button, Table, Tag } from "antd";
-import React from "react";
+import React, { useState } from "react";
+import ModalCreateAgent from "./ModalCreateAgent";
+import ModalEditAgent from "./ModalEditAgent";
 
 export default function ListAgent() {
   const dataSource = [0, 1, 1, 1, 2].map((res, i) => ({
@@ -55,8 +57,7 @@ export default function ListAgent() {
             type="primary"
             // size="small"
             className=" mx-1"
-            // onClick={() => showModal(res)}
-          >
+            onClick={handleToggleEditModal}>
             <div className="d-flex align-items-center">
               <EditFilled className="me-1" /> Edit
             </div>
@@ -76,12 +77,30 @@ export default function ListAgent() {
       ),
     },
   ];
+
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const handleToggleCreateModal = () => setIsCreateModalOpen((prev) => !prev);
+
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const handleToggleEditModal = () => setIsEditModalOpen((prev) => !prev);
+
   return (
     <div className="list-agent">
+      <ModalCreateAgent
+        isCreateModalOpen={isCreateModalOpen}
+        handleToggleCreateModal={handleToggleCreateModal}
+      />
+      <ModalEditAgent
+        isEditModalOpen={isEditModalOpen}
+        handleToggleEditModal={handleToggleEditModal}
+      />
       <div className="gbox bg-white">
         <div className="d-flex justify-content-between align-items-center">
           <p className="title">List Agent</p>
-          <Button type="primary" className="bg-warning text-dark">
+          <Button
+            type="primary"
+            className="bg-warning text-dark"
+            onClick={handleToggleCreateModal}>
             + Add New Agent
           </Button>
         </div>
