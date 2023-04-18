@@ -48,12 +48,12 @@ export default function AgentStep3() {
 
   const onEditTabs = (targetKey, action) => {
     if (action === "add") {
-      const id = nanoid();
+      //   const id = nanoid();
       setDepartmentRoleData((prev) => [
         ...prev,
         {
           label: "new Department",
-          key: id,
+          key: nanoid(),
           issues: [],
           roles: [],
         },

@@ -10,13 +10,10 @@ export default function ScheduleLiveAgent() {
     <div className="schedule mb-4">
       <div className="gbox bg-white">
         <p className="title">Setting Agent</p>
-        {/* // step 1 */}
         <AgentStep1 />
 
-        {/* //step 2 */}
         <AgentStep2 />
 
-        {/* //step 3  */}
         <AgentStep3 />
 
         <div className="w-100 d-flex justify-content-center mb-2">
