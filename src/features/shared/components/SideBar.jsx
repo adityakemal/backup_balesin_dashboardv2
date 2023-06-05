@@ -1,5 +1,6 @@
 import {
   AppstoreOutlined,
+  BarsOutlined,
   CustomerServiceOutlined,
   LineChartOutlined,
   WalletOutlined,
@@ -29,6 +30,12 @@ export default function SideBar() {
       name: "Marketing",
       path: `/marketing`,
       icon: <LineChartOutlined className="icon" />,
+      disabled: false,
+    },
+    {
+      name: "Product",
+      path: `/product`,
+      icon: <BarsOutlined className="icon" />,
       disabled: false,
     },
     {

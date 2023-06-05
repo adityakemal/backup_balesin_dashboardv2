@@ -3,6 +3,7 @@ import AuthContainer from "../features/auth/AuthContainer";
 import DashboardContainer from "../features/dashboard/DashboardContainer";
 import LiveAgentContainer from "../features/liveAgent/LiveAgentContainer";
 import MarketingContainer from "../features/marketing/MarketingContainer";
+import ProductContainer from "../features/product/ProductContainer";
 import SalesContainer from "../features/sales/SalesContainer";
 
 
@@ -33,6 +34,13 @@ export default [
         isSidebarLink: true,
         path: '/marketing',
         element: <MarketingContainer />,
+        isPrivate: true
+    },
+    {
+        name: 'Product',
+        isSidebarLink: true,
+        path: '/product',
+        element: <ProductContainer />,
         isPrivate: true
     },
     {
