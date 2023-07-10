@@ -71,7 +71,8 @@ export default function SideBar() {
                 }`
               }
               to={res.path}
-              end>
+              // end //for nested menu
+            >
               {res.icon}
               <p className="name mb-0">{res.name}</p>
             </NavLink>

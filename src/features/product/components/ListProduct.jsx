@@ -7,14 +7,16 @@ import {
 } from "@ant-design/icons";
 import { Button, Table, Tag } from "antd";
 import React, { useEffect, useState } from "react";
-import ModalCreateAgent from "./ModalEditProduct";
+
 import ModalEditProduct from "./ModalEditProduct";
 import { getListProduct } from "../product.api";
 import { useDispatch, useSelector } from "react-redux";
+import { rupiahFormat } from "../../../app/helper";
+import { handleOutletId } from "../../shared/shared.reducer";
 
 export default function ListProduct() {
   const dispatch = useDispatch();
-  const { outletId } = useSelector((state) => state.shared);
+  const { outletId, outletList } = useSelector((state) => state.shared);
   const { listProductData } = useSelector((state) => state.product);
 
   useEffect(() => {
@@ -25,20 +27,19 @@ export default function ListProduct() {
     };
     dispatch(getListProduct(params));
   }, [outletId]);
+
   const [data, setData] = useState([]);
   useEffect(() => {
     setData(listProductData);
-  }, [listProductData]);
-
-  const dataSource = [0, 1, 1, 1, 2].map((res, i) => ({
-    agent_name: "wakwaw",
-    email: "wakwaw@gmail.com",
-    department: "CS",
-    roles: ["Agent", "Supervisor"],
-    issues: ["issues1", "issues2"],
-  }));
+  }, [listProductData, outletId]);
 
   const columns = [
+    // {
+    //   title: "No",
+    //   dataIndex: "index",
+    //   key: "index",
+    //   render: (value, item, i) => i + 1,
+    // },
     {
       title: "Product Name",
       dataIndex: "name",
@@ -66,12 +67,12 @@ export default function ListProduct() {
       dataIndex: "sku",
       key: "sku",
     },
-    {
-      title: "Weight",
-      dataIndex: "weight",
-      key: "weight",
-      // render: (v) => v.toString().replace(",", ", "),
-    },
+    // {
+    //   title: "Weight",
+    //   dataIndex: "weight",
+    //   key: "weight",
+    //   // render: (v) => v.toString().replace(",", ", "),
+    // },
     {
       title: "Active",
       dataIndex: "active",
@@ -95,7 +96,7 @@ export default function ListProduct() {
             className=" mx-1"
             onClick={handleToggleEditModal}>
             <div className="d-flex align-items-center">
-              <EditFilled className="me-1" />
+              <EditFilled className="" />
             </div>
           </Button>
           <Button
@@ -106,7 +107,7 @@ export default function ListProduct() {
             // onClick={() => showModal(res)}
           >
             <div className="d-flex align-items-center">
-              <DeleteFilled className="me-1" />
+              <DeleteFilled className="" />
             </div>
           </Button>
         </div>
@@ -114,34 +115,27 @@ export default function ListProduct() {
     },
   ];
 
-  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
-  const handleToggleCreateModal = () => setIsCreateModalOpen((prev) => !prev);
-
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const handleToggleEditModal = () => setIsEditModalOpen((prev) => !prev);
 
   return (
     <div className="list-product">
-      <ModalCreateAgent
-        isCreateModalOpen={isCreateModalOpen}
-        handleToggleCreateModal={handleToggleCreateModal}
-      />
       <ModalEditProduct
         isEditModalOpen={isEditModalOpen}
         handleToggleEditModal={handleToggleEditModal}
       />
       <div className="gbox bg-white">
         <div className="d-flex justify-content-between align-items-center">
-          <p className="title">List Product</p>
-          <Button
+          {/* <p className="title">List Product</p> */}
+          {/* <Button
             type="primary"
             className="bg-warning text-dark"
             onClick={handleToggleCreateModal}>
             + Add New Product
-          </Button>
+          </Button> */}
         </div>
         <div className="tablecustom">
-          <div className="mt-4 tablewrap">
+          <div className="mt-3 tablewrap">
             <Table
               dataSource={data}
               columns={columns}
@@ -152,8 +146,21 @@ export default function ListProduct() {
                     {record?.list_variant.map((res, i) => (
                       <div
                         key={i}
-                        className="d-flex justify-content-between px-3">
-                        <img src={res?.main_image} alt="" />
+                        className={` wrapboxes d-flex justify-content-between align-items-center  
+                        ${
+                          record?.list_variant?.length !== i + 1 &&
+                          "border-bottom"
+                        } px-3`}>
+                        <img
+                          className="border"
+                          src={res?.main_image}
+                          alt=""
+                          style={{
+                            height: 50,
+                            width: 50,
+                            objectFit: "contain",
+                          }}
+                        />
                         <div className=" p-2 border-rounded">
                           <p className="label">Variant Name</p>
                           {res.name}
@@ -164,21 +171,35 @@ export default function ListProduct() {
                         </div>
                         <div className=" p-2 border-rounded">
                           <p className="label">Price</p>
-                          {res.price}
+                          {rupiahFormat(res.price)}
                         </div>
                         <div className=" p-2 border-rounded">
                           <p className="label">Discount Price</p>
-                          {res.discount}
+                          {rupiahFormat(res.discount)}
                         </div>
                         <div className=" p-2 border-rounded">
                           <p className="label">Size</p>
-                          {res.size}
+                          {res.size.toString()}
                         </div>
                       </div>
                     ))}
                   </div>
                 ),
                 rowExpandable: (record) => record.name !== "Not Expandable",
+              }}
+              pagination={{
+                size: 10,
+                showSizeChanger: true,
+                // onShowSizeChange: (e, v) => console.log(e, v),
+                showTotal: (total, range) => (
+                  <span style={{ left: 0, position: "absolute", fontSize: 12 }}>
+                    Showing {range[0]} to {range[1]} of {total} results
+                  </span>
+                ),
+              }}
+              scroll={{
+                x: "100%",
+                // y: 300,
               }}
             />
           </div>

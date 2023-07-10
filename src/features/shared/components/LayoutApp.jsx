@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import LoadingScreen from "./LoadingScreen";
 import { useEffect, useState } from "react";
 
-export default function LayoutApp({ children, hideSidebar }) {
+export default function LayoutApp({ children, hideSidebar, disableAllOutlet }) {
   const { loading: loadingDashboard, customerLoading } = useSelector(
     (state) => state.dashboard
   );
@@ -56,7 +56,7 @@ export default function LayoutApp({ children, hideSidebar }) {
           <div className="d-flex py-0 px-0">
             <SideBar />
             <div className="wrapcon">
-              <Navbar />
+              <Navbar disableAllOutlet={disableAllOutlet} />
               <div className="px-4 container-lg pb-5 pt-4">
                 <AnimateWrapper>{children}</AnimateWrapper>
               </div>

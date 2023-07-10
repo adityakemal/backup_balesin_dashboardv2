@@ -33,10 +33,10 @@ export const rupiahFormat = (value) => value &&
     }).format(value);
 
 
-    export const numberFormat = (value) => value &&
+export const numberFormat = (value) => value &&
     new Intl.NumberFormat("id-ID", {
         // style: '', // add Rp
         currency: "IDR",
         // maximumSignificantDigits: 30
-        minimumFractionDigits: 0,
+        minimumFractionDigits: 0, // remove 2 digit after comma
     }).format(value);

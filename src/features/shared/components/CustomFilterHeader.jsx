@@ -5,9 +5,15 @@ import { TbRefresh } from "react-icons/tb";
 import { DownloadOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { handleDateRange, handleRefresh } from "../shared.reducer";
+import { Link } from "react-router-dom";
 const { RangePicker } = DatePicker;
 
-export default function CustomFilterHeader({ title, noFilter }) {
+export default function CustomFilterHeader({
+  title,
+  noFilter,
+  href,
+  hrefTitle,
+}) {
   const dispatch = useDispatch();
   const dateFormat = "DD MMM YYYY";
   const { dateRangeFilter } = useSelector((state) => state.shared);
@@ -63,60 +69,71 @@ export default function CustomFilterHeader({ title, noFilter }) {
 
   return (
     <div className="filter-header mb-4">
-      <div className="row">
-        <div className="col-xl-8 order-2 order-xl-0">
-          <div className="d-flex justify-content-between align-items-center">
-            <p
-              className=" thead-dashboard mb-0"
-              dangerouslySetInnerHTML={{ __html: title || "&nbsp;" }}></p>
-            {!noFilter && (
-              <RangePicker
-                className=" daterange"
-                presets={rangePresets}
-                onChange={onRangeChange}
-                // allowClear={false}
-                value={dateRangeFilter}
-                size="large"
-                format={dateFormat}
-                disabledDate={(current) =>
-                  current && current > dayjs().endOf("day")
-                }
-                showNow
-              />
-            )}
-          </div>
+      {href && hrefTitle ? (
+        <div className="d-flex align-items-center justify-content-between ">
+          <p
+            className=" thead-dashboard mb-0"
+            dangerouslySetInnerHTML={{ __html: title || "&nbsp;" }}></p>
+          <Link to={href} className="">
+            <Button className="bg-warning text-dark">{hrefTitle}</Button>
+          </Link>
         </div>
-        {/* <div className="col-xl-4 mb-3 mb-xl-0"> */}
-        {!noFilter && (
-          <div className="col-xl-4 col-6 offset-6 offset-xl-0 mb-3 mb-xl-0">
-            <div className="row">
-              <div className="col-6">
-                <Button
-                  className="w-100"
-                  style={{ background: "#F7DC13" }}
-                  onClick={handleDataRefresh}
-                  size="large">
-                  <div className="d-flex align-items-center text-dark">
-                    <TbRefresh className="me-2" />
-                    Refresh
-                  </div>
-                </Button>
-              </div>
-              <div className="col-6">
-                <Button
-                  className="w-100 text-center"
-                  style={{ background: "#0090FF", color: "white" }}
-                  size="large">
-                  <div className="d-flex align-items-center text-white">
-                    <DownloadOutlined className="me-2" />
-                    Download
-                  </div>
-                </Button>
-              </div>
+      ) : (
+        <div className="row">
+          <div className="col-xl-8 order-2 order-xl-0">
+            <div className="d-flex justify-content-between align-items-center">
+              <p
+                className=" thead-dashboard mb-0"
+                dangerouslySetInnerHTML={{ __html: title || "&nbsp;" }}></p>
+              {!noFilter && (
+                <RangePicker
+                  className=" daterange"
+                  presets={rangePresets}
+                  onChange={onRangeChange}
+                  // allowClear={false}
+                  value={dateRangeFilter}
+                  size="large"
+                  format={dateFormat}
+                  disabledDate={(current) =>
+                    current && current > dayjs().endOf("day")
+                  }
+                  showNow
+                />
+              )}
             </div>
           </div>
-        )}
-      </div>
+          {/* <div className="col-xl-4 mb-3 mb-xl-0"> */}
+          {!noFilter && (
+            <div className="col-xl-4 col-6 offset-6 offset-xl-0 mb-3 mb-xl-0">
+              <div className="row">
+                <div className="col-6">
+                  <Button
+                    className="w-100"
+                    style={{ background: "#F7DC13" }}
+                    onClick={handleDataRefresh}
+                    size="large">
+                    <div className="d-flex align-items-center text-dark">
+                      <TbRefresh className="me-2" />
+                      Refresh
+                    </div>
+                  </Button>
+                </div>
+                <div className="col-6">
+                  <Button
+                    className="w-100 text-center"
+                    style={{ background: "#0090FF", color: "white" }}
+                    size="large">
+                    <div className="d-flex align-items-center text-white">
+                      <DownloadOutlined className="me-2" />
+                      Download
+                    </div>
+                  </Button>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }

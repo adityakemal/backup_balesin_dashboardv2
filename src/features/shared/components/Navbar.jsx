@@ -16,27 +16,40 @@ import { handleActiveuOtlet, handleOutletId } from "../shared.reducer";
 
 // import logo from "../../../images/balesinLogo.png";
 
-export default function Navbar() {
+export default function Navbar({ disableAllOutlet }) {
   // let location = useLocation();
   // let navigate = useNavigate();
   // const { outlet_id } = useParams();
 
   const dispatch = useDispatch();
-  const { outletList, outletActive, mainStoreInfo, outletId, isRefresh } =
-    useSelector((state) => state.shared);
+  const { outletList, mainStoreInfo, outletId, isRefresh } = useSelector(
+    (state) => state.shared
+  );
   useEffect(() => {
     const data = {
       bot_id: localStorage.getItem("bot_id"),
       store_id: localStorage.getItem("store_id"),
     };
     dispatch(postStoreInfo(data));
-  }, [isRefresh]);
+  }, [isRefresh, outletId]);
 
   const handleLogout = () => {
     localStorage.clear();
     window.location.reload();
   };
 
+  // const [dataOutlet] = useState([
+  //   {
+  //     key: -1,
+  //     value: -1,
+  //     label: "All outlet",
+  //   },
+  //   ...outletList.map((res, i) => ({
+  //     key: res.id,
+  //     value: res.id,
+  //     label: res.name,
+  //   })),
+  // ]);
   const itemsMenu = [
     // {
     //   key: "1",
@@ -56,35 +69,27 @@ export default function Navbar() {
     },
   ];
 
-  const dataOutlet = [
-    {
-      key: -1,
-      value: -1,
-      label: "All outlet",
-    },
-    ...outletList.map((res, i) => ({
-      key: res.id,
-      value: res.id,
-      label: res.name,
-    })),
-  ];
-
-  // useEffect(() => {
-  //   // dispatch(handleActiveuOtlet(dataOutlet[0]));
-  // }, []);
+  useEffect(() => {
+    if (disableAllOutlet && outletId == -1) {
+      dispatch(handleOutletId(outletList[0]?.id || -1));
+    }
+  }, [disableAllOutlet, outletList]);
 
   const handleOutlet = ({ key }) => {
-    const newId = dataOutlet.find((res) => res.key == key).key;
-    console.log(newId, "handleOutletId");
-    dispatch(handleOutletId(newId));
+    // const newId = outletList.find((res) => res.key == key).key;
+    console.log(key, "handleOutletId");
+    dispatch(handleOutletId(key));
     // navigate(`/${menuLocation}/${data.value}`);
   };
 
   const [isShown, setIsShown] = useState(false);
+
   return (
     <div className="navbar">
       <div className="container-lg px-4">
         <div className="d-flex justify-content-between align-items-center w-100">
+          <h1>{outletId}</h1>
+          {/* <pre>{JSON.stringify(outletList, 0, 2)}</pre> */}
           {/* <Link to={"/home"}>
           <div className="left d-flex align-items-center">
             <img src={logo} alt="logo" className="logo me-2" />
@@ -93,7 +98,19 @@ export default function Navbar() {
           <Dropdown
             autosize={true}
             menu={{
-              items: dataOutlet,
+              items: [
+                {
+                  key: -1,
+                  value: -1,
+                  label: "All outlet",
+                  disabled: disableAllOutlet,
+                },
+                ...outletList.map((res) => ({
+                  key: res.id,
+                  value: res.id,
+                  label: res.name,
+                })),
+              ],
               onClick: handleOutlet,
             }}>
             <div
@@ -107,9 +124,9 @@ export default function Navbar() {
               onMouseLeave={() => setIsShown(false)}>
               <ShopOutlined className="mx-3" />
               <div className="" style={{ minWidth: 170 }}>
-                {outletId
-                  ? dataOutlet.find((res) => res.value == outletId)?.label
-                  : "All Outlet"}
+                {outletId == -1
+                  ? "All Outlet"
+                  : outletList?.find((res) => res.id == outletId)?.name}
               </div>
               <IoChevronDown
                 className="mx-3"

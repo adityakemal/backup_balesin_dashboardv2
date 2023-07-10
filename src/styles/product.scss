@@ -1,10 +1,39 @@
 .product{
     .list-product{
         .expand-box{
-            img{
-                height: 50px;
-                object-fit: contain;
+            .wrapboxes{
+                div{
+                    flex : 1;
+                    // border: 1px solid #eee;
+                }
+                img{
+                    flex: 1;
+                    height: 45px;
+                    // aspect-ratio: 1.5/1;
+                    object-fit: contain;
+                    border-radius: 5px;
+                }
             }
         }
+    }
+}
+
+.create-product{
+    .variant-box{
+        .wrapboxes{
+            font-size: 14px;
+            div{
+                flex : 1;
+                // border: 1px solid #eee;
+            }
+            img{
+                flex: 1;
+                height: 45px;
+                // aspect-ratio: 1.5/1;
+                object-fit: contain;
+                border-radius: 5px;
+            }
+        }
+
     }
 }

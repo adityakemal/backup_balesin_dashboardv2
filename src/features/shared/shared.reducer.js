@@ -1,6 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 import dayjs from "dayjs";
-import {  postStoreInfo } from "./shared.api";
+import { postStoreInfo } from "./shared.api";
 
 
 const sharedSclice = createSlice({
@@ -8,33 +8,35 @@ const sharedSclice = createSlice({
     initialState: {
         loadingOutletList: false,
         outletActive: {},
-        mainStoreInfo : {},
+        mainStoreInfo: {},
         outletList: [],
-        dateRangeFilter : [
+        dateRangeFilter: [
             dayjs().add(-7, "d"),
             dayjs(),
         ],
         outletId: -1,
-        isRefresh : false
+        isRefresh: false
     },
     reducers: {
         handleRefresh: (state, { payload }) => {
 
-            state.isRefresh = !state.isRefresh 
+            state.isRefresh = !state.isRefresh
         },
         handleOutletId: (state, { payload }) => {
-            console.log(payload, 'in reducers')
+            console.log(payload, 'in handleOutletId')
+            // console.log(current(state.outletList[0]), 'in handleOutletId')
+            // console.log(current(state.outletActive), 'in active')
 
-            state.outletId = payload 
+            state.outletId = payload
         },
         handleActiveuOtlet: (state, { payload }) => {
             console.log(payload, 'in reducers')
-            state.outletActive = payload 
+            state.outletActive = payload
         },
 
         handleDateRange: (state, { payload }) => {
             console.log(payload, 'in reducers')
-            state.dateRangeFilter = payload 
+            state.dateRangeFilter = payload
         }
     },
     extraReducers: {
@@ -55,7 +57,7 @@ const sharedSclice = createSlice({
         [postStoreInfo.fulfilled]: (state, { payload }) => {
             state.loadingOutletList = false
             state.mainStoreInfo = payload.main_store_info
-            // console.log(payload, 'STORE INFO')
+            console.log(payload, 'STORE INFO')
             // state.addressList = payload.data
             state.outletList = payload.outlets_info
         },
