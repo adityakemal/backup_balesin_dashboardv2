@@ -47,7 +47,7 @@ export default [
     {
         name: 'Create Product',
         isSidebarLink: true,
-        path: '/product/create',
+        path: '/product/create/:marketId/:outletId',
         element: <ProductCreateContainer />,
         isPrivate: true
     },

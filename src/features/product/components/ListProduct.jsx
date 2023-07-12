@@ -1,37 +1,67 @@
-import {
-  DeleteColumnOutlined,
-  DeleteFilled,
-  DeleteOutlined,
-  EditFilled,
-  EditOutlined,
-} from "@ant-design/icons";
-import { Button, Table, Tag } from "antd";
+import { DeleteFilled, EditFilled } from "@ant-design/icons";
+import { Button, Modal, Table, Tag, message } from "antd";
 import React, { useEffect, useState } from "react";
 
 import ModalEditProduct from "./ModalEditProduct";
-import { getListProduct } from "../product.api";
 import { useDispatch, useSelector } from "react-redux";
 import { rupiahFormat } from "../../../app/helper";
-import { handleOutletId } from "../../shared/shared.reducer";
+import { unwrapResult } from "@reduxjs/toolkit";
+import { deleteProduct, getListProduct } from "../product.api";
 
-export default function ListProduct() {
+export default function ListProduct({ ActiveOutletObj }) {
   const dispatch = useDispatch();
-  const { outletId, outletList } = useSelector((state) => state.shared);
   const { listProductData } = useSelector((state) => state.product);
-
-  useEffect(() => {
-    const params = {
-      store_id: localStorage.getItem("store_id"),
-      outlet: outletId,
-      // mode: 1,
-    };
-    dispatch(getListProduct(params));
-  }, [outletId]);
 
   const [data, setData] = useState([]);
   useEffect(() => {
     setData(listProductData);
-  }, [listProductData, outletId]);
+  }, [listProductData]);
+
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const handleToggleEditModal = () => setIsEditModalOpen((prev) => !prev);
+
+  const [ismodalDelete, setIsmodalDelete] = useState(false);
+  const [ChoosedDelete, setChoosedDelete] = useState({});
+
+  const handleModalDelete = (res) => {
+    setIsmodalDelete((prev) => !prev);
+    setChoosedDelete(() => res);
+  };
+
+  const handleGetLostProduct = () => {
+    const params = {
+      store_id: localStorage.getItem("store_id"),
+      outlet: ActiveOutletObj?.id,
+      // mode: 1,
+    };
+    dispatch(getListProduct(params));
+  };
+
+  const handleOk = () => {
+    console.log(ChoosedDelete);
+    const data = {
+      bot_id: localStorage.getItem("bot_id"),
+      store_id: localStorage.getItem("store_id"),
+      product_id: ChoosedDelete?.id,
+    };
+    dispatch(deleteProduct(data))
+      .then(unwrapResult)
+      .then((res) => {
+        console.log(res);
+        message.success("Product deleted!");
+        handleCancel();
+        handleGetLostProduct();
+      })
+      .catch((err) => {
+        console.log(err.response);
+        message.error("Delete failed!");
+      });
+  };
+
+  const handleCancel = () => {
+    setIsmodalDelete(false);
+    setChoosedDelete(() => {});
+  };
 
   const columns = [
     // {
@@ -104,8 +134,7 @@ export default function ListProduct() {
             danger
             // size="small"
             className="mx-1"
-            // onClick={() => showModal(res)}
-          >
+            onClick={() => handleModalDelete(res)}>
             <div className="d-flex align-items-center">
               <DeleteFilled className="" />
             </div>
@@ -115,15 +144,25 @@ export default function ListProduct() {
     },
   ];
 
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const handleToggleEditModal = () => setIsEditModalOpen((prev) => !prev);
-
   return (
     <div className="list-product">
       <ModalEditProduct
         isEditModalOpen={isEditModalOpen}
         handleToggleEditModal={handleToggleEditModal}
       />
+
+      <Modal
+        title="Confirm delete"
+        open={ismodalDelete}
+        onOk={handleOk}
+        closeIcon={<></>}
+        okText="Delete"
+        onCancel={handleCancel}>
+        <p>
+          Are you sure want to delete this{" "}
+          <b className="text-danger">"{ChoosedDelete?.name}"</b> ?
+        </p>
+      </Modal>
       <div className="gbox bg-white">
         <div className="d-flex justify-content-between align-items-center">
           {/* <p className="title">List Product</p> */}

@@ -5,7 +5,8 @@ import { TbRefresh } from "react-icons/tb";
 import { DownloadOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { handleDateRange, handleRefresh } from "../shared.reducer";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { IoArrowBack } from "react-icons/io5";
 const { RangePicker } = DatePicker;
 
 export default function CustomFilterHeader({
@@ -13,11 +14,14 @@ export default function CustomFilterHeader({
   noFilter,
   href,
   hrefTitle,
+  isBack,
 }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const dateFormat = "DD MMM YYYY";
   const { dateRangeFilter } = useSelector((state) => state.shared);
 
+  const handleBack = () => navigate(-1);
   const rangePresets = [
     {
       label: "Last 7 Days",
@@ -82,9 +86,12 @@ export default function CustomFilterHeader({
         <div className="row">
           <div className="col-xl-8 order-2 order-xl-0">
             <div className="d-flex justify-content-between align-items-center">
-              <p
-                className=" thead-dashboard mb-0"
-                dangerouslySetInnerHTML={{ __html: title || "&nbsp;" }}></p>
+              <p className=" thead-dashboard mb-0 d-flex align-items-center">
+                {isBack && (
+                  <IoArrowBack className="me-2 pointer" onClick={handleBack} />
+                )}
+                {title}
+              </p>
               {!noFilter && (
                 <RangePicker
                   className=" daterange"

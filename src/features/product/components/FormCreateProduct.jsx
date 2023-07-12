@@ -7,9 +7,11 @@ import { IoTrash } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { postProduct } from "../product.api";
 import { unwrapResult } from "@reduxjs/toolkit";
+import { useParams } from "react-router-dom";
 
 export default function FormCreateProduct() {
-  // const { outletId } = useSelector((state) => state.share);
+  const { outletId, marketId } = useParams();
+
   const [variantList, setVariantList] = useState([]);
   const [isModalVariant, setIsModalVariant] = useState(false);
 
@@ -27,10 +29,10 @@ export default function FormCreateProduct() {
     }
     const data = values;
     data.bot_id = localStorage.getItem("bot_id");
-    data.market_id = "";
+    data.market_id = marketId;
     data.mode = "mt";
     data.store_id = localStorage.getItem("store_id");
-    // data.outlet_id = outletId;
+    data.outlet_id = outletId;
     data.variant = variantList;
 
     dispatch(postProduct(data))
@@ -39,6 +41,7 @@ export default function FormCreateProduct() {
         console.log(res, "RESIULT SAVE DATA");
         message.success("Product saved! 👍");
         onReset();
+        setVariantList(() => []);
       })
       .catch((err) => console.log(err.response));
     console.log("Success:", data);

@@ -5,9 +5,9 @@ import FormCreateProduct from "./components/FormCreateProduct";
 
 export default function ProductCreateContainer() {
   return (
-    <LayoutApp disableAllOutlet>
+    <LayoutApp disbleSelectOutlet>
       <div className="create-product">
-        <CustomFilterHeader title="Create Product " noFilter />
+        <CustomFilterHeader title="Create Product " noFilter isBack />
         <FormCreateProduct />
       </div>
     </LayoutApp>
