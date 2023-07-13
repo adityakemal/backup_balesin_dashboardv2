@@ -28,6 +28,18 @@ export const postProduct = createAsyncThunk('product/postProduct', async (data, 
     }
 })
 
+export const putProduct = createAsyncThunk('product/putProduct', async (data, { rejectWithValue }) => {
+    try {
+        const response = await axios.put(`${process.env.REACT_APP_OLD_API_URL}/product`, data)
+
+        // console.log(response, 'in api js')
+        return response.data
+    } catch (error) {
+        console.log(error.response, 'error response')
+        return rejectWithValue(error)
+    }
+})
+
 
 export const getMarket = createAsyncThunk('product/getMarket', async (params, { rejectWithValue }) => {
     try {
@@ -67,6 +79,20 @@ export const deleteProduct = createAsyncThunk('product/deleteProduct', async (da
         return rejectWithValue(error)
     }
 })
+
+export const getDetailProduct = createAsyncThunk('product/getDetailProduct', async (params, { rejectWithValue }) => {
+    try {
+        const response = await axios.get(`${process.env.REACT_APP_OLD_API_URL}/product/info`, {
+            params: params
+        })
+        // console.log(response, 'in api js')
+        return response.data
+    } catch (error) {
+        console.log(error.response, 'error response')
+        return rejectWithValue(error)
+    }
+})
+
 
 // fetch("https://faq.balesin.id/api/store/product", {
 //   "headers": {

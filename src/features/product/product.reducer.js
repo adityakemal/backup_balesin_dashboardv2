@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { deleteProduct, getListProduct, getMarket, getOutletProduct, postProduct } from "./product.api";
+import { deleteProduct, getDetailProduct, getListProduct, getMarket, getOutletProduct, postProduct, putProduct } from "./product.api";
 
 
 
@@ -10,6 +10,7 @@ const productSlice = createSlice({
         listProductData: [],
         listMarket: [],
         listOutletProduct: [],
+        detailProduct: {}
     },
     reducers: {
         // handleRegister: (state, action) => {
@@ -74,6 +75,31 @@ const productSlice = createSlice({
         [deleteProduct.rejected]: (state, action) => {
             state.loading = false
         },
+
+        //detail prod
+        [getDetailProduct.pending]: (state, action) => {
+            state.loading = true
+        },
+        [getDetailProduct.fulfilled]: (state, { payload }) => {
+            state.loading = false
+            state.detailProduct = payload.response
+            console.log(payload, 'detail prod')
+        },
+        [getDetailProduct.rejected]: (state, action) => {
+            state.loading = false
+        },
+
+        //edit prod
+        [putProduct.pending]: (state, action) => {
+            state.loading = true
+        },
+        [putProduct.fulfilled]: (state, { payload }) => {
+            state.loading = false
+        },
+        [putProduct.rejected]: (state, action) => {
+            state.loading = false
+        },
+
 
     }
 

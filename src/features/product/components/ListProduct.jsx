@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { rupiahFormat } from "../../../app/helper";
 import { unwrapResult } from "@reduxjs/toolkit";
 import { deleteProduct, getListProduct } from "../product.api";
+import { Link } from "react-router-dom";
 
 export default function ListProduct({ ActiveOutletObj }) {
   const dispatch = useDispatch();
@@ -16,9 +17,6 @@ export default function ListProduct({ ActiveOutletObj }) {
   useEffect(() => {
     setData(listProductData);
   }, [listProductData]);
-
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const handleToggleEditModal = () => setIsEditModalOpen((prev) => !prev);
 
   const [ismodalDelete, setIsmodalDelete] = useState(false);
   const [ChoosedDelete, setChoosedDelete] = useState({});
@@ -120,15 +118,19 @@ export default function ListProduct({ ActiveOutletObj }) {
       key: "option",
       render: (_, res) => (
         <div className="d-flex align-items-center">
-          <Button
-            type="primary"
-            // size="small"
-            className=" mx-1"
-            onClick={handleToggleEditModal}>
-            <div className="d-flex align-items-center">
-              <EditFilled className="" />
-            </div>
-          </Button>
+          <pre>{JSON.stringify(_, 0, 2)}</pre>
+          <Link
+            to={`/product/edit/${ActiveOutletObj?.market_id}/${ActiveOutletObj?.id}/${res.id}`}>
+            <Button
+              type="primary"
+              // size="small"
+              className=" mx-1"
+              onClick={() => console.log(res.id)}>
+              <div className="d-flex align-items-center">
+                <EditFilled className="" />
+              </div>
+            </Button>
+          </Link>
           <Button
             //   type="danger"
             danger
@@ -146,10 +148,10 @@ export default function ListProduct({ ActiveOutletObj }) {
 
   return (
     <div className="list-product">
-      <ModalEditProduct
+      {/* <ModalEditProduct
         isEditModalOpen={isEditModalOpen}
         handleToggleEditModal={handleToggleEditModal}
-      />
+      /> */}
 
       <Modal
         title="Confirm delete"

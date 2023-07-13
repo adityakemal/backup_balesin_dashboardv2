@@ -5,6 +5,7 @@ import LiveAgentContainer from "../features/liveAgent/LiveAgentContainer";
 import MarketingContainer from "../features/marketing/MarketingContainer";
 import ProductContainer from "../features/product/ProductContainer";
 import ProductCreateContainer from "../features/product/ProductCreateContainter";
+import ProductEditContainer from "../features/product/ProductEditContainer";
 import SalesContainer from "../features/sales/SalesContainer";
 
 
@@ -49,6 +50,13 @@ export default [
         isSidebarLink: true,
         path: '/product/create/:marketId/:outletId',
         element: <ProductCreateContainer />,
+        isPrivate: true
+    },
+    {
+        name: 'Edit Product',
+        isSidebarLink: true,
+        path: '/product/edit/:marketId/:outletId/:productId',
+        element: <ProductEditContainer />,
         isPrivate: true
     },
     {
