@@ -1,5 +1,5 @@
 import { DeleteFilled, EditFilled } from "@ant-design/icons";
-import { Button, Modal, Table, Tag, message } from "antd";
+import { Button, Image, Modal, Table, Tag, message } from "antd";
 import React, { useEffect, useState } from "react";
 
 import ModalEditProduct from "./ModalEditProduct";
@@ -193,16 +193,19 @@ export default function ListProduct({ ActiveOutletObj }) {
                           record?.list_variant?.length !== i + 1 &&
                           "border-bottom"
                         } px-3`}>
-                        <img
-                          className="border"
-                          src={res?.main_image}
-                          alt=""
-                          style={{
-                            height: 50,
-                            width: 50,
-                            objectFit: "contain",
-                          }}
-                        />
+                        <div>
+                          <Image
+                            className="border"
+                            src={res?.main_image}
+                            alt=""
+                            width={80}
+                            style={{
+                              height: 60,
+                              width: 80,
+                              objectFit: "contain",
+                            }}
+                          />
+                        </div>
                         <div className=" p-2 border-rounded">
                           <p className="label">Variant Name</p>
                           {res.name}

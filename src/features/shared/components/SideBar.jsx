@@ -21,28 +21,28 @@ export default function SideBar() {
       icon: <AppstoreOutlined className="icon" />,
     },
     {
-      name: "Sales",
-      path: `/sales`,
-      icon: <WalletOutlined className="icon" />,
-      disabled: false,
-    },
-    {
-      name: "Marketing",
-      path: `/marketing`,
-      icon: <LineChartOutlined className="icon" />,
-      disabled: false,
-    },
-    {
       name: "Product",
       path: `/product`,
       icon: <BarsOutlined className="icon" />,
       disabled: false,
     },
     {
+      name: "Sales",
+      path: `/sales`,
+      icon: <WalletOutlined className="icon" />,
+      disabled: true,
+    },
+    {
+      name: "Marketing",
+      path: `/marketing`,
+      icon: <LineChartOutlined className="icon" />,
+      disabled: true,
+    },
+    {
       name: "Live Agent",
       path: `/live-agent`,
       icon: <CustomerServiceOutlined className="icon" />,
-      disabled: false,
+      disabled: true,
     },
   ];
 
