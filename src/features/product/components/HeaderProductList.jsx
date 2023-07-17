@@ -64,7 +64,7 @@ export default function HeaderProductList({ callbackActiveOutlet }) {
         <small>{JSON.stringify(ActiveOutlet, 0, 2)}</small>
       </pre> */}
       <div className="row cols-2">
-        <div className="col-md">
+        <div className="col-md-6">
           <div className="label">Select Market</div>
           <Select
             value={ActiveMarket?.id}
@@ -77,7 +77,7 @@ export default function HeaderProductList({ callbackActiveOutlet }) {
             }))}
           />
         </div>
-        <div className="col-md">
+        <div className="col-md-6">
           <div className="label">Select Outlet</div>
           <Select
             className="w-100"
@@ -89,6 +89,15 @@ export default function HeaderProductList({ callbackActiveOutlet }) {
               label: res.name,
             }))}
           />
+        </div>
+        <div className="col-md-12">
+          <small>
+            <p
+              className="p-3 mb-0 bg-light mt-3 text-dark rounded"
+              style={{ fontSize: 12 }}>
+              {ActiveOutlet?.address}
+            </p>
+          </small>
         </div>
       </div>
     </div>

@@ -111,6 +111,7 @@ export default function ListProduct({ ActiveOutletObj }) {
         ) : (
           <Tag color="error">{v}</Tag>
         ),
+      sorter: (a, b) => a.active.localeCompare(b.active),
     },
     {
       title: "option",

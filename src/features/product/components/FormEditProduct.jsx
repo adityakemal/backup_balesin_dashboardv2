@@ -3,13 +3,22 @@ import React, { useEffect, useState } from "react";
 
 import ModalVariantForm from "./ModalVariantForm";
 import { rupiahFormat } from "../../../app/helper";
-import { IoTrash } from "react-icons/io5";
+import {
+  IoCreateOutline,
+  IoPencil,
+  IoPencilOutline,
+  IoPencilSharp,
+  IoTrash,
+} from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetailProduct, putProduct } from "../product.api";
 import { unwrapResult } from "@reduxjs/toolkit";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { EditFilled } from "@ant-design/icons";
+import ModalVariantEditForm from "./ModalVariantEditForm";
 
 export default function FormEditProduct() {
+  const navigate = useNavigate();
   const { outletId, marketId, productId } = useParams();
   const [variantList, setVariantList] = useState([]);
   const [isModalVariant, setIsModalVariant] = useState(false);
@@ -58,9 +67,17 @@ export default function FormEditProduct() {
         message.success("Product edited! 👍");
         onReset();
         setVariantList(() => []);
+        navigate(-1);
       })
       .catch((err) => console.log(err.response));
     console.log("Success:", data);
+  };
+
+  const [DataFillVariant, setDataFillVariant] = useState({});
+
+  const handleEditVariant = (variantObj) => {
+    handleModalVariant();
+    setDataFillVariant(variantObj);
   };
 
   const handleModalVariant = () => setIsModalVariant((prev) => !prev);
@@ -172,13 +189,13 @@ export default function FormEditProduct() {
       <div className="gbox bg-light">
         <div className="d-flex justify-content-between align-items-center mb-3">
           <p className="title-box mb-0 ">
-            List Variant {`( ${variantList?.length} )`}
+            Variant {`( ${variantList?.length} )`}
           </p>
           <Button onClick={handleModalVariant} type="primary">
             + Add Variant
           </Button>
         </div>
-        <div className="variant-box">
+        <div className="variant-box ">
           {variantList?.map((res, i) => (
             <div
               key={i}
@@ -207,23 +224,28 @@ export default function FormEditProduct() {
                 <p className="label">Size</p>
                 {res.size.toString()}
               </div>
-              <div className=" p-2 border-rounded">
+              <div className=" p-2 border-rounded d-flex">
                 <p className="label"></p>
-                <IoTrash
-                  color="red"
-                  size={24}
-                  className="pointer"
+                <Button
+                  className="d-flex align-items-center me-2"
+                  onClick={() => handleEditVariant(res)}>
+                  <IoCreateOutline color="blue" size={24} />
+                </Button>
+                <Button
                   onClick={() => handleDeleteVariant(res.id)}
-                />
+                  className="d-flex align-items-center ms-2">
+                  <IoTrash color="red" size={24} className="pointer" />
+                </Button>
               </div>
             </div>
           ))}
         </div>
       </div>
-      <ModalVariantForm
+      <ModalVariantEditForm
         isModalVariant={isModalVariant}
         handleModalVariant={handleModalVariant}
         setVariantList={setVariantList}
+        DataFillVariant={DataFillVariant}
       />
       <hr />
       <div className="d-flex justify-content-center">
