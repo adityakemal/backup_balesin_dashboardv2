@@ -3,10 +3,10 @@ import CustomFilterHeader from "../shared/components/CustomFilterHeader";
 import LayoutApp from "../shared/components/LayoutApp";
 import ListProduct from "./components/ListProduct";
 import HeaderProductList from "./components/HeaderProductList";
+import { useSelector } from "react-redux";
 
 export default function ProductContainer() {
-  const [ActiveOutletObj, setActiveOutletObj] = useState(null);
-  const callbackActiveOutlet = (v) => setActiveOutletObj(() => v);
+  const { activeOutlet } = useSelector((state) => state.product);
 
   return (
     <LayoutApp disbleSelectOutlet>
@@ -14,11 +14,11 @@ export default function ProductContainer() {
         <CustomFilterHeader
           title="Product "
           noFilter
-          href={`/product/create/${ActiveOutletObj?.market_id}/${ActiveOutletObj?.id}`}
+          href={`/product/create/${activeOutlet?.market_id}/${activeOutlet?.id}`}
           hrefTitle="+ Add New Product"
         />
-        <HeaderProductList callbackActiveOutlet={callbackActiveOutlet} />
-        <ListProduct ActiveOutletObj={ActiveOutletObj} />
+        <HeaderProductList />
+        <ListProduct />
       </div>
     </LayoutApp>
   );

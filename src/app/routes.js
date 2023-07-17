@@ -46,6 +46,13 @@ export default [
         isPrivate: true
     },
     {
+        name: 'Product',
+        isSidebarLink: true,
+        path: '/product/:page',
+        element: <ProductContainer />,
+        isPrivate: true
+    },
+    {
         name: 'Create Product',
         isSidebarLink: true,
         path: '/product/create/:marketId/:outletId',

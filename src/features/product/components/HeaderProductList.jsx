@@ -2,29 +2,29 @@ import { Select } from "antd";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getListProduct, getMarket, getOutletProduct } from "../product.api";
+import { handleActiveMarket, handleActiveOutlet } from "../product.reducer";
 
-export default function HeaderProductList({ callbackActiveOutlet }) {
+export default function HeaderProductList() {
   const dispatch = useDispatch();
-  const { listMarket, listOutletProduct } = useSelector(
-    (state) => state.product
-  );
+  const { listMarket, listOutletProduct, activeMarket, activeOutlet } =
+    useSelector((state) => state.product);
 
-  const [ActiveMarket, setActiveMarket] = useState(null);
-  const [ActiveOutlet, setActiveOutlet] = useState(null);
+  // const [ActiveMarket, setActiveMarket] = useState(null);
+  // const [ActiveOutlet, setActiveOutlet] = useState(null);
 
-  const handleGetLostProduct = () => {
+  const handleGetListProduct = () => {
     const params = {
       store_id: localStorage.getItem("store_id"),
-      outlet: ActiveOutlet?.id,
+      outlet: activeOutlet?.id,
       // mode: 1,
     };
     dispatch(getListProduct(params));
   };
 
   useEffect(() => {
-    handleGetLostProduct();
-    callbackActiveOutlet(ActiveOutlet);
-  }, [ActiveOutlet]);
+    handleGetListProduct();
+    // callbackActiveOutlet(activeOutlet);
+  }, [activeOutlet]);
 
   useEffect(() => {
     const params = {
@@ -36,25 +36,31 @@ export default function HeaderProductList({ callbackActiveOutlet }) {
   useEffect(() => {
     const params = {
       bot_id: localStorage.getItem("bot_id"),
-      market_id: ActiveMarket?.id,
+      market_id: activeMarket?.id,
     };
     dispatch(getOutletProduct(params));
-  }, [ActiveMarket]);
+  }, [activeMarket]);
 
   const handleChangeMarket = (value, obj) => {
-    setActiveMarket(() => obj);
+    dispatch(handleActiveMarket(obj));
+    // setActiveMarket(() => obj);
   };
   const handleChangeOutlet = (value, obj) => {
-    setActiveOutlet(() => obj);
+    dispatch(handleActiveOutlet(obj));
+    // setActiveOutlet(() => obj);
   };
 
   useEffect(() => {
-    listMarket.length !== 0 && setActiveMarket(() => listMarket[0]);
+    if (activeMarket === null) {
+      // console.log(ActiveMarket, "ActiveMarket");
+      listMarket.length !== 0 && dispatch(handleActiveMarket(listMarket[0]));
+    }
   }, [listMarket]);
 
   useEffect(() => {
     if (listOutletProduct.length !== 0) {
-      setActiveOutlet(() => listOutletProduct[0]);
+      dispatch(handleActiveOutlet(listOutletProduct[0]));
+      // setActiveOutlet(() => listOutletProduct[0]);
     }
   }, [listOutletProduct]);
 
@@ -67,7 +73,7 @@ export default function HeaderProductList({ callbackActiveOutlet }) {
         <div className="col-md-6">
           <div className="label">Select Market</div>
           <Select
-            value={ActiveMarket?.id}
+            value={activeMarket?.id}
             className="w-100"
             onChange={handleChangeMarket}
             options={listMarket?.map((res) => ({
@@ -81,7 +87,7 @@ export default function HeaderProductList({ callbackActiveOutlet }) {
           <div className="label">Select Outlet</div>
           <Select
             className="w-100"
-            value={ActiveOutlet?.id}
+            value={activeOutlet?.id}
             onChange={handleChangeOutlet}
             options={listOutletProduct?.map((res) => ({
               ...res,
@@ -95,7 +101,7 @@ export default function HeaderProductList({ callbackActiveOutlet }) {
             <p
               className="p-3 mb-0 bg-light mt-3 text-dark rounded"
               style={{ fontSize: 12 }}>
-              {ActiveOutlet?.address}
+              {activeOutlet?.address}
             </p>
           </small>
         </div>

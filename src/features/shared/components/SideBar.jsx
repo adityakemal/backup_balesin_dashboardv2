@@ -22,7 +22,7 @@ export default function SideBar() {
     },
     {
       name: "Product",
-      path: `/product`,
+      path: `/product/1`,
       icon: <BarsOutlined className="icon" />,
       disabled: false,
     },
@@ -71,7 +71,7 @@ export default function SideBar() {
                 }`
               }
               to={res.path}
-              // end //for nested menu
+              end //for nested menu
             >
               {res.icon}
               <p className="name mb-0">{res.name}</p>

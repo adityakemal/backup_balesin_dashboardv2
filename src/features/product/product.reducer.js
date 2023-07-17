@@ -10,12 +10,17 @@ const productSlice = createSlice({
         listProductData: [],
         listMarket: [],
         listOutletProduct: [],
-        detailProduct: {}
+        detailProduct: {},
+        activeMarket: null,
+        activeOutlet: null
     },
     reducers: {
-        // handleRegister: (state, action) => {
-        //     state.isRegister = !state.isRegister
-        // },
+        handleActiveMarket: (state, action) => {
+            state.activeMarket = action.payload
+        },
+        handleActiveOutlet: (state, action) => {
+            state.activeOutlet = action.payload
+        },
     },
     extraReducers: {
         [getListProduct.pending]: (state, action) => {
@@ -105,6 +110,6 @@ const productSlice = createSlice({
 
 })
 
-// export const { handleRegister } = dashboardSlice.actions
+export const { handleActiveMarket, handleActiveOutlet } = productSlice.actions
 
 export default productSlice.reducer

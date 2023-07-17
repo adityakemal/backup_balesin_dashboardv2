@@ -7,11 +7,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { rupiahFormat } from "../../../app/helper";
 import { unwrapResult } from "@reduxjs/toolkit";
 import { deleteProduct, getListProduct } from "../product.api";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
-export default function ListProduct({ ActiveOutletObj }) {
+export default function ListProduct() {
   const dispatch = useDispatch();
-  const { listProductData } = useSelector((state) => state.product);
+  const { listProductData, activeOutlet } = useSelector(
+    (state) => state.product
+  );
+  const { page } = useParams();
+  const navigate = useNavigate();
+
+  const [CurrentPage, setCurrentPage] = useState(page || 1);
 
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -29,7 +35,7 @@ export default function ListProduct({ ActiveOutletObj }) {
   const handleGetLostProduct = () => {
     const params = {
       store_id: localStorage.getItem("store_id"),
-      outlet: ActiveOutletObj?.id,
+      outlet: activeOutlet?.id,
       // mode: 1,
     };
     dispatch(getListProduct(params));
@@ -121,7 +127,7 @@ export default function ListProduct({ ActiveOutletObj }) {
         <div className="d-flex align-items-center">
           <pre>{JSON.stringify(_, 0, 2)}</pre>
           <Link
-            to={`/product/edit/${ActiveOutletObj?.market_id}/${ActiveOutletObj?.id}/${res.id}`}>
+            to={`/product/edit/${activeOutlet?.market_id}/${activeOutlet?.id}/${res.id}`}>
             <Button
               type="primary"
               // size="small"
@@ -233,6 +239,12 @@ export default function ListProduct({ ActiveOutletObj }) {
                 rowExpandable: (record) => record.name !== "Not Expandable",
               }}
               pagination={{
+                current: parseInt(CurrentPage),
+                // defaultCurrent: CurrentPage,
+                onChange: (p) => {
+                  setCurrentPage(p);
+                  navigate(`/product/${p}`);
+                },
                 size: 10,
                 showSizeChanger: true,
                 // onShowSizeChange: (e, v) => console.log(e, v),
