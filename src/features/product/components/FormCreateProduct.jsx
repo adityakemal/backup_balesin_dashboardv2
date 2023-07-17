@@ -184,7 +184,7 @@ export default function FormCreateProduct() {
                 {rupiahFormat(res.price)}
               </div>
               <div className=" p-2 border-rounded">
-                <p className="label">Discount</p>
+                <p className="label">Discount Price</p>
                 {rupiahFormat(res.discount)}
               </div>
               <div className=" p-2 border-rounded">

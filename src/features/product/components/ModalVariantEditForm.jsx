@@ -208,7 +208,7 @@ export default function ModalVariantEditForm({
           </div>
           <div className="col-md-12">
             <Form.Item
-              label="Discount"
+              label="Discount Price"
               name="discount"
               rules={[
                 {
