@@ -148,7 +148,7 @@ export default function FormCreateProduct() {
                   message: "This field is required",
                 },
               ]}>
-              <Input type="number" />
+              <Input type="text" />
             </Form.Item>
           </div>
         </div>
