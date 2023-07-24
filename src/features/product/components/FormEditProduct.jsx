@@ -50,6 +50,8 @@ export default function FormEditProduct() {
     data.market_id = null;
     data.store_id = localStorage.getItem("store_id");
     data.outlet_id = null;
+    data.description = values.description || "";
+
     data.variant = variantList.map((r) => ({
       name: r.name,
       id: r.id,
@@ -136,8 +138,8 @@ export default function FormEditProduct() {
               name="description"
               rules={[
                 {
-                  required: true,
-                  message: "This field is required",
+                  //   required: true,
+                  //   message: "This field is required",
                 },
               ]}>
               <Input.TextArea />

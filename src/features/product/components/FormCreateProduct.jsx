@@ -35,6 +35,8 @@ export default function FormCreateProduct() {
     data.outlet_id = outletId;
     data.variant = variantList;
 
+    data.description = values.description || "";
+
     dispatch(postProduct(data))
       .then(unwrapResult)
       .then((res) => {
@@ -103,8 +105,8 @@ export default function FormCreateProduct() {
               name="description"
               rules={[
                 {
-                  required: true,
-                  message: "This field is required",
+                  // required: true,
+                  // message: "This field is required",
                 },
               ]}>
               <Input.TextArea />
@@ -155,9 +157,7 @@ export default function FormCreateProduct() {
       </Form>
       <div className="gbox bg-light">
         <div className="d-flex justify-content-between align-items-center mb-3">
-          <p className="title-box mb-0 ">
-            List Variant <i>{`(${variantList.length})`}</i>
-          </p>
+          <p className="title-box mb-0 ">{`(${variantList.length})`} Variant</p>
           <Button onClick={handleModalVariant} type="primary">
             + Add Variant
           </Button>
